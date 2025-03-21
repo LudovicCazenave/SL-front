@@ -1,0 +1,36 @@
+/* The following block can be included in a custom.scss */
+
+/* make the customizations */
+$theme-colors: (
+  'primary': #330C2F,
+  'secondary': #BFACB5,
+  'light': #E5D0CC,
+  'dark': #2C3E50,
+  "success": #28a745,
+  "info": #17a2b8,
+  "warning": #ffc107,
+  "danger": #dc3545,
+);
+
+$font-size: 1.4rem !important; /* Ajout de la taille de police globale */
+$font-main: 'Lato', sans-serif;
+$font-title: 'Poiret One', sans-serif;
+/* Affecter la taille globalement */
+body {
+  font-size: $font-size;
+  font-family: $font-main;
+  background-color: map-get($theme-colors, 'light') !important
+}
+
+h1{
+    font-family: $font-title
+}
+
+.navbar-toggler .fa-bars {
+    font-size: 2.5rem;
+    color: #ffffff;
+  }
+
+
+/* import bootstrap to set changes */
+@import 'bootstrap/scss/bootstrap';
