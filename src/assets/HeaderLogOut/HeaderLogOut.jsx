@@ -10,8 +10,8 @@ library.add(fas);
 
 function HeaderLogOut(){
 	return(
-		<>
-			<Navbar collapseOnSelect expand="lg" className="bg-primary">
+		<header className='sticky-top'>
+			<Navbar  collapseOnSelect expand="lg" className="bg-primary">
         <Container fluid>
           <Navbar.Brand href="/accueil">
               <img
@@ -42,7 +42,7 @@ function HeaderLogOut(){
           </Navbar.Collapse>
         </Container>
       </Navbar>
-		</>
+		</header>
 	);
 };
 

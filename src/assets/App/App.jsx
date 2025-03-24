@@ -3,6 +3,9 @@ import './App.scss'
 import HeaderLogOut from '../HeaderLogOut/HeaderLogOut.jsx'
 import Container  from 'react-bootstrap/Container'
 import SignUp from '../SIgnUp/SignUp.jsx'
+import Tagline from '../Tagline/Tagline.jsx'
+import Events from '../Events/Events.jsx'
+import Footer from '../Footer/Footer.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -10,7 +13,12 @@ function App() {
   return (
     <>
       <HeaderLogOut />
-      <SignUp />
+      <main>
+        <SignUp />
+        <Tagline />
+        <Events />
+      </main>
+      <Footer />
     </>
   )
 }
