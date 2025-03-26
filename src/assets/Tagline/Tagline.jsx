@@ -1,7 +1,9 @@
 import Row  from "react-bootstrap/Row";
 import Col  from "react-bootstrap/Col";
 import Container  from "react-bootstrap/Container";
+
 function Tagline(){
+	
 	return (
 		<section className="mt-3">
 			<Container className="text-center">
@@ -25,7 +27,7 @@ function Tagline(){
 			</Row>
 			</Container>
 		</section>
-	)
-}
+	);
+};
 
-export default Tagline
+export default Tagline;
