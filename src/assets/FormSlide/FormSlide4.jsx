@@ -32,10 +32,10 @@ function FormSlide4({ nextSlide, updateFormData }) {
       </Row>
       <Row className="d-flex justify-content-center gap-2 my-3">
         <Col xs="auto">
-          <Button type="submit">Valider</Button>
+          <Button size="lg" type="submit">Valider</Button>
         </Col>
         <Col xs="auto">
-          <Button variant="dark" type="button" onClick={handleSkip}>
+          <Button size="lg" variant="dark" type="button" onClick={handleSkip}>
             Passer
           </Button>
         </Col>

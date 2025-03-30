@@ -40,7 +40,7 @@ function SignUp() {
           {isLargeScreen || showFormOnSmallScreen ? (
             <SignUpForm />
           ) : (
-            <Button  type='button' className="btn-primary" onClick={handleButtonClick}>
+            <Button size="lg"  type='button' className="btn-primary" onClick={handleButtonClick}>
               Rejoindre SeniorLove
             </Button>
           )}

@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import NavLinks from '../NavLinks/NavLinks.jsx';
 import Form from 'react-bootstrap/Form';
 
-library.add(fas);
+library.add(faBars);
 
-function HeaderLogOut() {
+function Header() {
   const [isConnected, setIsConnected] = useState(false);
   const [currentPage, setCurrentPage] = useState('');
 
@@ -49,4 +49,4 @@ function HeaderLogOut() {
   );
 }
 
-export default HeaderLogOut;
+export default Header;

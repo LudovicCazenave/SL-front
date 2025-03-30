@@ -14,7 +14,7 @@ function SignIn(){
         <Form.Label htmlFor="password">Mot de passe</Form.Label>
         <Form.Control type="password" id="password" name="password" placeholder="Votre mot de passe..." required autoComplete="new-password" />
       </Form.Group>
-      <Button type="submit" className="my-3 w-100">Se connecter</Button>
+      <Button size="lg" type="submit" className="my-3 w-100">Se connecter</Button>
       </Form>
     </Container>
   );

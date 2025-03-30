@@ -37,7 +37,7 @@ function SignUpForm(){
 				<option value="MARSEILLE">Marseille</option>
 			</Form.Select>
 		</Form.Group>	
-		<Button type='submit' className='mt-3 w-100'>S'inscrire</Button>
+		<Button size="lg" type='submit' className='mt-3 w-100'>S'inscrire</Button>
 		</Form>
 	);
 };

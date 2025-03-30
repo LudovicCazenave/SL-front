@@ -30,7 +30,7 @@ function FormSlide2({ nextSlide, updateFormData }) {
           <option value="Célibataire">Célibataire</option>
         </Form.Select>
       </Form.Group>
-      <Button type="submit" className="my-3">Valider</Button>
+      <Button size="lg" type="submit" className="my-3">Valider</Button>
     </Form>
   );
 }

@@ -27,7 +27,7 @@ function FormSlide1({ nextSlide, updateFormData }) {
           placeholder="Votre taille en cm"
         />
       </Form.Group>
-      <Button type="submit" className="my-3">Valider</Button>
+      <Button size="lg" type="submit" className="my-3">Valider</Button>
     </Form>
   );
 }

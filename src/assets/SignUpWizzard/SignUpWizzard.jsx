@@ -2,6 +2,7 @@ import { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 
 import FormSlide1 from "../FormSlide/FormSlide1.jsx";
 import FormSlide2 from "../FormSlide/FormSlide2.jsx";
@@ -64,14 +65,14 @@ function SignUpWizzard() {
             </p>
             <Row className="d-flex justify-content-center gap-2 mt-5">
               <Col xs="auto">
-                <button className="btn btn-primary" onClick={() => setCurrentSlide(1)}>
+                <Button size="lg" onClick={() => setCurrentSlide(1)}>
                   Commencer votre inscription
-                </button>
+                </Button>
               </Col>
               <Col xs="auto">
-                <button className="btn btn-dark">
+                <Button size="lg" variant="dark">
                   Retour vers l'accueil
-                </button>
+                </Button>
               </Col>
             </Row>
           </>

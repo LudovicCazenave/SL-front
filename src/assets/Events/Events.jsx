@@ -5,7 +5,7 @@ function Events() {
   
   return (
     <section>
-      <Container fluid="xl" className="text-center mt-5 bg-secondary px-0">
+      <Container fluid="lg" className="text-center mt-5 bg-secondary px-0">
         <h2 className="bg-primary text-white py-3 ">Nos derniers événements</h2>
         <EventCard />
       </Container>

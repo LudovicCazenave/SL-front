@@ -79,7 +79,7 @@ function FormSlide10({ nextSlide, updateFormData, formData, apiEndpoint }) {
           autoComplete="new-password"
         />
       </Form.Group>
-      <Button type="submit" className="my-3">Valider</Button>
+      <Button size="lg" type="submit" className="my-3">Valider</Button>
     </Form>
   );
 }

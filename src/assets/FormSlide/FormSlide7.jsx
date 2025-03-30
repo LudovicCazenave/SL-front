@@ -28,7 +28,7 @@ function FormSlide7({ nextSlide, updateFormData }) {
         <Form.Check id="artistique" label="Artistique" name="labels" value="Artistique" />
         <Form.Check id="jeux-de-societe" label="Jeux de société" name="labels" value="Jeux de société" />
       </Form.Group>
-      <Button type="submit" className="my-3">Valider</Button>
+      <Button size="lg" type="submit" className="my-3">Valider</Button>
     </Form>
   );
 }

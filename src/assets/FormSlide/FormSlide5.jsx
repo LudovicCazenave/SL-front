@@ -25,7 +25,7 @@ function FormSlide5({ nextSlide, updateFormData }) {
           </Form.Group>
         </Col>
       </Row>
-      <Button type="submit" className="my-3">Valider</Button>
+      <Button size="lg" type="submit" className="my-3">Valider</Button>
     </Form>
   );
 }
