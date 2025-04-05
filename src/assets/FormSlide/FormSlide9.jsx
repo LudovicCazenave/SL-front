@@ -15,6 +15,7 @@ function FormSlide9({ nextSlide, updateFormData }) {
 
     
     updateFormData(formData);
+    nextSlide();
   };
 
   const handleSkip = () => {

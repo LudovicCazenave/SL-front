@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router';
+
+
 import Container from 'react-bootstrap/Container';
-import SignUpImage from '../SignUpImage/SignUpImage.jsx';
-import SignUpForm from '../SignUpForm/SignUpForm.jsx';
 import Button from 'react-bootstrap/Button';
 
-function SignUp() {
+import SignUpImage from '../SignUpImage/SignUpImage.jsx';
+import SignUpForm from '../SignUpForm/SignUpForm.jsx';
+
+function SignUp({ updateFormData }) {
+  
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 992);
   const [showFormOnSmallScreen, setShowFormOnSmallScreen] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleResize = () => {
@@ -28,23 +35,27 @@ function SignUp() {
     setShowFormOnSmallScreen(false);
   };
 
+  const handleSignUp = () => {
+    navigate("/inscription");
+  };
+  
   return (
     <section>
       <Container fluid="xl" className="p-3 position-relative">
-        <SignUpImage
-          isLargeScreen={isLargeScreen}
-          showFormOnSmallScreen={showFormOnSmallScreen}
-          onButtonClick={handleButtonClick}
-          onCloseForm={handleCloseForm}
-        >
-          {isLargeScreen || showFormOnSmallScreen ? (
-            <SignUpForm />
-          ) : (
-            <Button size="lg"  type='button' className="btn-primary" onClick={handleButtonClick}>
-              Rejoindre SeniorLove
-            </Button>
-          )}
-        </SignUpImage>
+          <SignUpImage
+            isLargeScreen={isLargeScreen}
+            showFormOnSmallScreen={showFormOnSmallScreen}
+            onButtonClick={handleButtonClick}
+            onCloseForm={handleCloseForm}
+          >
+            {isLargeScreen || showFormOnSmallScreen ? (
+              <SignUpForm onSignUp={handleSignUp} updateFormData={updateFormData}/>
+            ) : (
+              <Button size="lg"  type='button' className="btn-primary" onClick={handleButtonClick}>
+                Rejoindre SeniorLove
+              </Button>
+            )}
+          </SignUpImage>
       </Container>
     </section>
   );

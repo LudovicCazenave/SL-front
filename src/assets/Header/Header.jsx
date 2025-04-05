@@ -1,7 +1,10 @@
 import { useState } from 'react';
+import { NavLink } from 'react-router';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import NavLinks from '../NavLinks/NavLinks.jsx';
@@ -16,7 +19,7 @@ function Header() {
   return (
     <Navbar collapseOnSelect expand="lg" className="bg-primary">
       <Container fluid>
-        <Navbar.Brand href="/accueil">
+        <Navbar.Brand as={NavLink} to="/accueil">
           <img
             alt=""
             src="/img/logo/heart-2-removebg.png"
