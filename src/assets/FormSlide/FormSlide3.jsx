@@ -9,10 +9,11 @@ function FormSlide3({ nextSlide, updateFormData }) {
     e.preventDefault();
 
     const formData = {
-      zodiac: e.target.zodiac.value,é
+      zodiac: e.target.zodiac.value
     };
 
     updateFormData(formData);
+    nextSlide();
   };
 
   const handleSkip = () => {

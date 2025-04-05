@@ -11,6 +11,7 @@ function FormSlide1({ nextSlide, updateFormData }) {
     };
 
     updateFormData(formData);
+    nextSlide();
   };
 
   return (

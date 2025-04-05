@@ -1,6 +1,7 @@
-import EventCard from "../EventCard/EventCard.jsx"
 
 import Container from "react-bootstrap/Container";
+
+import EventCard from "../EventCard/EventCard.jsx";
 
 function ProfilEvents(){
 

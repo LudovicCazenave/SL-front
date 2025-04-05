@@ -1,4 +1,9 @@
+import "./NavLinks.scss"
+
+import { NavLink } from 'react-router';
+
 import Nav from 'react-bootstrap/Nav';
+
 
 function NavLinks({ isConnected, setIsConnected, currentPage, setCurrentPage }) {
   const handleLogout = () => {
@@ -6,35 +11,42 @@ function NavLinks({ isConnected, setIsConnected, currentPage, setCurrentPage }) 
     setCurrentPage('');
   };
 
+  const getLinkClassName = ({ isActive }) => {
+    return isActive ? "text-white text-center active" : "text-white text-center";
+  };
+
   return (
     <Nav variant="underline" defaultActiveKey="/accueil" className="ms-auto">
       {isConnected ? (
         <>
-
           <Nav.Link
-            href="/profils"
-            className="text-white text-center"
+            as={NavLink}
+            to="/profils"
+            className={getLinkClassName}
             onClick={() => setCurrentPage('profils')}
           >
             Profils
           </Nav.Link>
           <Nav.Link
-            href="/evenements"
-            className="text-white text-center"
+            as={NavLink}
+            to="/evenements"
+            className={getLinkClassName}
             onClick={() => setCurrentPage('evenements')}
           >
             Événements
           </Nav.Link>
           <Nav.Link
-            href="/messages"
-            className="text-white text-center"
+            as={NavLink}
+            to="/messages"
+            className={getLinkClassName}
             onClick={() => setCurrentPage('messages')}
           >
             Messages
           </Nav.Link>
           <Nav.Link
-            href="/mon-compte"
-            className="text-white text-center"
+            as={NavLink}
+            to="/mon-compte"
+            className={getLinkClassName}
             onClick={() => {
               if (currentPage === 'mon-compte') {
                 handleLogout();
@@ -47,7 +59,11 @@ function NavLinks({ isConnected, setIsConnected, currentPage, setCurrentPage }) 
           </Nav.Link>
         </>
       ) : (
-        <Nav.Link href="/connexion" className="text-white text-center">
+        <Nav.Link
+          as={NavLink}
+          to="/connexion"
+          className={getLinkClassName}
+        >
           Connexion
         </Nav.Link>
       )}

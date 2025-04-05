@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 function FormSlide10({ nextSlide, updateFormData, formData, apiEndpoint }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    
     const data = {
       firstname: e.target.firstname.value.trim(),
       email: e.target.email.value.trim(),
@@ -18,8 +18,8 @@ function FormSlide10({ nextSlide, updateFormData, formData, apiEndpoint }) {
     }
 
     updateFormData(data);
-
-    try {
+    console.log(formData);
+    /*try {
       const response = await fetch(apiEndpoint, {
         method: "POST",
         headers: {
@@ -37,7 +37,7 @@ function FormSlide10({ nextSlide, updateFormData, formData, apiEndpoint }) {
     } catch (error) {
       console.error("Erreur :", error.message);
       alert("Une erreur est survenue lors de l'inscription, veuillez réessayer.");
-    }
+    } */
   };
 
   return (
