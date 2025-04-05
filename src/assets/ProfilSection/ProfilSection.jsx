@@ -1,10 +1,9 @@
 import "./ProfilSection.scss"
 
 import Container from "react-bootstrap/Container";
-import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
 
-function ProfilSection(){
+function ProfilSection({children}){
 
   return(
     <Container className="text-center bg-white my-3 py-4 rounded">
@@ -15,7 +14,7 @@ function ProfilSection(){
           <p><strong>Age :</strong> <span>60 ans</span></p>
           <p><strong>Ville :</strong> <span>Bordeaux</span></p>
         </div>
-        <Button size="lg">Modifier</Button>
+        {children}
       </article>
       
     </Container>
