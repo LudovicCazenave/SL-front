@@ -1,7 +1,6 @@
 import Container from "react-bootstrap/Container";
-import Button from "react-bootstrap/Button";
 
-function ProfilInfo() {
+function ProfilInfo({children}) {
   return (
     <Container
       className="bg-warning text-white my-3 py-4 rounded flex-grow-1"
@@ -18,8 +17,7 @@ function ProfilInfo() {
           <p><strong>Style de musique :</strong> <span>Rock</span></p>
         </div>
         <div className="d-flex gap-4">
-          <Button size="lg">Modifier</Button>
-          <Button variant="danger" size="lg">Supprimer le compte</Button>
+          {children}
         </div>
       </article>
     </Container>

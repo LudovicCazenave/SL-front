@@ -1,7 +1,6 @@
 import Container from "react-bootstrap/Container";
-import Button from "react-bootstrap/Button";
 
-function ProfilInterest(){
+function ProfilInterest({children}){
   return (
     <Container className="bg-white my-3 py-4 rounded">
       <article>
@@ -9,7 +8,7 @@ function ProfilInterest(){
         <div>
           <span className="d-inline-block text-white mb-3 bg-secondary py-1 px-2 rounded ">Jeux de socitété</span>
         </div>
-        <Button size="lg">Modifier</Button>  
+        {children}  
       </article>
     </Container>
   );

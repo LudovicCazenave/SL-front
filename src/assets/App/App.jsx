@@ -6,7 +6,7 @@ import SignUpWizzard from '../SignUpWizzard/SignUpWizzard.jsx';
 import SignIn from '../SignIn/SignIn.jsx';
 import HomePageLogOut from '../HomePageLogOut/HomePageLogOut.jsx';
 import HomePageConnected from '../HomePageConnected/HomePageConnected.jsx';
-import MyAccountPage from '../../MyAccountPage/MyAccountPage.jsx';
+import MyAccountPage from '../MyAccountPage/MyAccountPage.jsx';
 
 function App() {
   return (
