@@ -6,16 +6,16 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import ProgressBar from "react-bootstrap/ProgressBar";
 
-import FormSlide1 from "../FormSlide/FormSlide1.jsx";
-import FormSlide2 from "../FormSlide/FormSlide2.jsx";
-import FormSlide3 from "../FormSlide/FormSlide3.jsx";
-import FormSlide4 from "../FormSlide/FormSlide4.jsx";
-import FormSlide5 from "../FormSlide/FormSlide5.jsx";
-import FormSlide6 from "../FormSlide/FormSlide6.jsx";
-import FormSlide7 from "../FormSlide/FormSlide7.jsx";
-import FormSlide8 from "../FormSlide/FormSlide8.jsx";
-import FormSlide9 from "../FormSlide/FormSlide9.jsx";
-import FormSlide10 from "../FormSlide/FormSlide10.jsx";
+import FormSlide1 from "../../components/FormSlide/FormSlide1.jsx";
+import FormSlide2 from "../../components/FormSlide/FormSlide2.jsx";
+import FormSlide3 from "../../components/FormSlide/FormSlide3.jsx";
+import FormSlide4 from "../../components/FormSlide/FormSlide4.jsx";
+import FormSlide5 from "../../components/FormSlide/FormSlide5.jsx";
+import FormSlide6 from "../../components/FormSlide/FormSlide6.jsx";
+import FormSlide7 from "../../components/FormSlide/FormSlide7.jsx";
+import FormSlide8 from "../../components/FormSlide/FormSlide8.jsx";
+import FormSlide9 from "../../components/FormSlide/FormSlide9.jsx";
+import FormSlide10 from "../../components/FormSlide/FormSlide10.jsx";
 
 function SignUpWizzard({ formData, updateFormData }) {
   const [currentSlide, setCurrentSlide] = useState(0); 
@@ -23,7 +23,7 @@ function SignUpWizzard({ formData, updateFormData }) {
   console.log("FormData actuel :", formData); 
 
   const nextSlide = () => {
-    setCurrentSlide((prevSlide) => Math.min(prevSlide + 1, formSlides.length - 1));
+    setCurrentSlide((prevSlide) => Math.min(prevSlide + 1, formSlides.length));
   };
 
   const handleSkip = () => {

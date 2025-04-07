@@ -4,15 +4,15 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 
-import ProfilEvents from "../ProfilEvents/ProfilEvents.jsx";
-import ProfilInfo from "../ProfilInfo/ProfilInfo.jsx";
-import ProfilInterest from "../ProfilInterest/ProfilInterest.jsx";
-import ProfilPresentation from "../ProfilPresentation/ProfilPresentation.jsx";
-import ProfilSection from "../ProfilSection/ProfilSection.jsx";
-import EditProfilSection from "../EditProfilSection/EditProfilSection.jsx";
-import EditProfilPresentation from "../EditProfilPresentation/EditProfilPresentation.jsx";
-import EditProfilInfo from "../EditProfilInfo/EditProfilInfo.jsx";
-import EditProfilInterest from "../EditProfilInterest/EditProfilInterest.jsx";
+import ProfilEvents from "../../components/ProfilEvents/ProfilEvents.jsx";
+import ProfilInfo from "../../components/ProfilInfo/ProfilInfo.jsx";
+import ProfilInterest from "../../components/ProfilInterest/ProfilInterest.jsx";
+import ProfilPresentation from "../../components/ProfilPresentation/ProfilPresentation.jsx";
+import ProfilSection from "../../components/ProfilSection/ProfilSection.jsx";
+import EditProfilSection from "../../components/EditProfilSection/EditProfilSection.jsx";
+import EditProfilPresentation from "../../components/EditProfilPresentation/EditProfilPresentation.jsx";
+import EditProfilInfo from "../../components/EditProfilInfo/EditProfilInfo.jsx";
+import EditProfilInterest from "../../components/EditProfilInterest/EditProfilInterest.jsx";
 
 function MyAccountPage() {
 

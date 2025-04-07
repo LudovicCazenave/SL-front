@@ -1,6 +1,6 @@
-import Events from "../Events/Events.jsx";
-import SignUp from "../SignUp/SignUp.jsx";
-import Tagline from "../Tagline/Tagline.jsx";
+import Events from "../../components/Events/Events.jsx";
+import SignUp from "../../components/SignUp/SignUp.jsx";
+import Tagline from "../../components/Tagline/Tagline.jsx";
 
 function HomePageLogOut({ updateFormData }){
   return (

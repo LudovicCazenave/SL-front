@@ -2,8 +2,8 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-import EventCard from "../EventCard/EventCard.jsx";
-import ProfilCard from "../ProfilCard/ProfilCard.jsx";
+import EventCard from "../../components/EventCard/EventCard.jsx";
+import ProfilCard from "../../components/ProfilCard/ProfilCard.jsx";
 
 function HomePageConnected(){
   return (

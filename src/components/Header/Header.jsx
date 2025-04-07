@@ -13,7 +13,7 @@ import Form from 'react-bootstrap/Form';
 library.add(faBars);
 
 function Header() {
-  const [isConnected, setIsConnected] = useState(false);
+  const [isConnected, setIsConnected] = useState(true);
   const [currentPage, setCurrentPage] = useState('');
 
   return (
@@ -22,7 +22,7 @@ function Header() {
         <Navbar.Brand as={NavLink} to="/accueil">
           <img
             alt=""
-            src="/img/logo/heart-2-removebg.png"
+            src="/src/assets/img/logo/heart-2-removebg.png"
             width="60"
             height="60"
             className="d-inline-block align-top"

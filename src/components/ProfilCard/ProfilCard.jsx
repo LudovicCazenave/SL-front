@@ -7,7 +7,7 @@ function ProfilCard(){
 			<a href="#" style={{ textDecoration: "none" }}>
 				<Card>
 					<Card.Title className='py-3 h1'>Chantal</Card.Title>
-					<Card.Img src='/img/diverse-img/profils/Celine.png'/>
+					<Card.Img src='/src/assets/img/diverse-img/profils/Celine.png'/>
 					<Card.Body>
 						<Card.Text>
 							TOULOUSE

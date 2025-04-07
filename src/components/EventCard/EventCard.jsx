@@ -8,7 +8,7 @@ function EventCard() {
 			<a href="#" style={{ textDecoration: "none" }}>
 				<Card>
 					<Card.Title className='py-3 h1'>PARIS</Card.Title>
-					<Card.Img src='/img/diverse-img/games.jpg'/>
+					<Card.Img src='/src/assets/img/diverse-img/games.jpg'/>
 					<Card.Body>
 						<Card.Text>
 							Partie de Trivial Pursuit au bar à jeux "Les Grands Gamins"

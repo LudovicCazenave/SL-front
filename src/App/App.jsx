@@ -1,15 +1,15 @@
 import './App.scss';
 
 import { useState } from 'react';
-import { Routes, Route } from 'react-router';
+import { Routes, Route, Navigate } from 'react-router';
 
-import Header from '../Header/Header.jsx';
-import Footer from '../Footer/Footer.jsx';
-import SignIn from '../SignIn/SignIn.jsx';
-import HomePageLogOut from '../HomePageLogOut/HomePageLogOut.jsx';
-import HomePageConnected from '../HomePageConnected/HomePageConnected.jsx';
-import MyAccountPage from '../MyAccountPage/MyAccountPage.jsx';
-import SignUpWizzard from '../SignUpWizzard/SignUpWizzard.jsx';
+import Header from '../components/Header/Header.jsx';
+import Footer from '../components/Footer/Footer.jsx';
+import SignIn from '../pages/SignIn/SignIn.jsx';
+import HomePageLogOut from '../pages/HomePageLogOut/HomePageLogOut.jsx';
+import HomePageConnected from '../pages/HomePageConnected/HomePageConnected.jsx';
+import MyAccountPage from '../pages/MyAccountPage/MyAccountPage.jsx';
+import SignUpWizzard from '../pages/SignUpWizzard/SignUpWizzard.jsx';
 
 function App() {
 
@@ -32,6 +32,7 @@ function App() {
 
         <main>
           <Routes>
+            <Route path="/" element={<Navigate to="/accueil"/>} />
             <Route path="/accueil" element={<HomePageLogOut updateFormData={updateFormData} />} />
             <Route path="/inscription" element={<SignUpWizzard formData={formData} updateFormData={updateFormData} />} />
             <Route path="/connexion" element={<SignIn />} />
