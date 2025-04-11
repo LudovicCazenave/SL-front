@@ -1,16 +1,31 @@
+import { useNavigate } from 'react-router';
+
 import Card from 'react-bootstrap/Card';
 import Container  from "react-bootstrap/Container";
 
-function ProfilCard(){
+function ProfilCard({ 
+	profil={
+		firstname : "Baptiste",
+		city : "Paris"
+	} 
+}){
+
+	const navigate = useNavigate();
+
+	const handleClick = () => {
+    navigate(`/profils/${profil.slug}`);
+  };
+
+
   return (
-    <Container className='p-4'>
+    <Container fluid="lg" className='p-4 text-center'>
 			<a href="#" style={{ textDecoration: "none" }}>
-				<Card>
-					<Card.Title className='py-3 h1'>Chantal</Card.Title>
+				<Card onClick={handleClick} >
+					<Card.Title className='py-3 h1'>{profil.firstname}</Card.Title>
 					<Card.Img src='/src/assets/img/diverse-img/profils/Celine.png'/>
 					<Card.Body>
 						<Card.Text>
-							TOULOUSE
+							{profil.city}
 						</Card.Text>
 					</Card.Body>
 				</Card>

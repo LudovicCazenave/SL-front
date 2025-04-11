@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState ,useContext } from 'react';
 import { NavLink } from 'react-router';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,16 +10,20 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavLinks from '../NavLinks/NavLinks.jsx';
 import Form from 'react-bootstrap/Form';
 
+import { AuthContext } from '../../contexts/AuthContext.jsx';
+
 library.add(faBars);
 
 function Header() {
-  const [isConnected, setIsConnected] = useState(true);
-  const [currentPage, setCurrentPage] = useState('');
+
+  const { authenticated } = useContext(AuthContext);
+  const [currentPage, setCurrentPage] = useState("");
+  const [expanded, setExpanded] = useState(false); 
 
   return (
-    <Navbar collapseOnSelect expand="lg" className="bg-primary">
+    <Navbar collapseOnSelect expand="lg" className="bg-primary" expanded={expanded} onToggle={() => setExpanded(!expanded)}>
       <Container fluid>
-        <Navbar.Brand as={NavLink} to="/accueil">
+        <Navbar.Brand as={NavLink} to={authenticated ? "/tableau-de-bord" : "/accueil"}>
           <img
             alt=""
             src="/src/assets/img/logo/heart-2-removebg.png"
@@ -28,9 +32,9 @@ function Header() {
             className="d-inline-block align-top"
           />
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" className="text-white w-40">
+        <Navbar.Toggle aria-controls="navbarScroll" className="text-white w-40" onClick={() => setExpanded(!expanded)}>
           <FontAwesomeIcon icon="fa-solid fa-bars" />
-        </Navbar.Toggle>
+        </Navbar.Toggle >
         <Navbar.Collapse id="navbarScroll">
           <Form>
             <Form.Control
@@ -40,12 +44,8 @@ function Header() {
               aria-label="Search"
             />
           </Form>
-          <NavLinks
-            isConnected={isConnected}
-            setIsConnected={setIsConnected}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-          />
+          <NavLinks setCurrentPage={setCurrentPage} onSelect={() => setExpanded(false)} />
+
         </Navbar.Collapse>
       </Container>
     </Navbar>

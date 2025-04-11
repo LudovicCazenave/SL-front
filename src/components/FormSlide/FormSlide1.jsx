@@ -2,16 +2,21 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 function FormSlide1({ nextSlide, updateFormData }) {
- 
+
   const handleSubmit = (e) => {
     e.preventDefault(); 
 
+    const heightValue = Number(e.target.height.value);
+
     const formData = {
-      height: e.target.height.value, 
+      height: heightValue, 
     };
 
     updateFormData(formData);
-    nextSlide();
+    setTimeout(() => {
+      nextSlide();
+    }, 0);
+
   };
 
   return (

@@ -1,14 +1,31 @@
-import "./NavLinks.scss"
+import "./NavLinks.scss";
 
-import { NavLink } from 'react-router';
+import { useContext } from "react";
+import { NavLink, useLocation } from "react-router"; 
 
-import Nav from 'react-bootstrap/Nav';
+import { AuthContext } from "../../contexts/AuthContext.jsx";
+import { logOutMyAccount } from "../../api/api.js";
+
+import Nav from "react-bootstrap/Nav";
 
 
-function NavLinks({ isConnected, setIsConnected, currentPage, setCurrentPage }) {
-  const handleLogout = () => {
-    setIsConnected(false);
-    setCurrentPage('');
+function NavLinks({ setCurrentPage, onSelect }) {
+  
+  const { authenticated, setAuthenticated } = useContext(AuthContext);
+  const location = useLocation();
+
+  const isOnMonCompte = location.pathname === "/mon-compte";
+
+  const handleLogout = async () => {
+    try{
+      const logout = await logOutMyAccount();
+      if(logout){
+        setAuthenticated(false);
+        setCurrentPage('');
+      } 
+    } catch (error){
+      console.error("error logout", error)
+    }
   };
 
   const getLinkClassName = ({ isActive }) => {
@@ -16,14 +33,14 @@ function NavLinks({ isConnected, setIsConnected, currentPage, setCurrentPage }) 
   };
 
   return (
-    <Nav variant="underline" defaultActiveKey="/accueil" className="ms-auto">
-      {isConnected ? (
+    <Nav variant="underline" defaultActiveKey="/accueil" className="ms-auto" onSelect={onSelect} >
+      {authenticated ? (
         <>
           <Nav.Link
             as={NavLink}
             to="/profils"
             className={getLinkClassName}
-            onClick={() => setCurrentPage('profils')}
+            onClick={() => {setCurrentPage("profils"); onSelect();}}
           >
             Profils
           </Nav.Link>
@@ -31,7 +48,7 @@ function NavLinks({ isConnected, setIsConnected, currentPage, setCurrentPage }) 
             as={NavLink}
             to="/evenements"
             className={getLinkClassName}
-            onClick={() => setCurrentPage('evenements')}
+            onClick={() => {setCurrentPage("evenements"); onSelect();}}
           >
             Événements
           </Nav.Link>
@@ -39,7 +56,7 @@ function NavLinks({ isConnected, setIsConnected, currentPage, setCurrentPage }) 
             as={NavLink}
             to="/messages"
             className={getLinkClassName}
-            onClick={() => setCurrentPage('messages')}
+            onClick={() => {setCurrentPage("messages"); onSelect();}}
           >
             Messages
           </Nav.Link>
@@ -48,27 +65,25 @@ function NavLinks({ isConnected, setIsConnected, currentPage, setCurrentPage }) 
             to="/mon-compte"
             className={getLinkClassName}
             onClick={() => {
-              if (currentPage === 'mon-compte') {
+              
+              if (isOnMonCompte) {
                 handleLogout();
               } else {
-                setCurrentPage('mon-compte');
+                setCurrentPage("mon-compte");
               }
+              onSelect();
             }}
           >
-            {currentPage === 'mon-compte' ? 'Se déconnecter' : 'Mon compte'}
+            {isOnMonCompte ? "Se déconnecter" : "Mon compte"}
           </Nav.Link>
         </>
       ) : (
-        <Nav.Link
-          as={NavLink}
-          to="/connexion"
-          className={getLinkClassName}
-        >
+        <Nav.Link as={NavLink} to="/connexion" className={getLinkClassName} onClick={() => onSelect()}>
           Connexion
         </Nav.Link>
       )}
     </Nav>
   );
-}
+};
 
 export default NavLinks;
