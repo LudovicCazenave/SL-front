@@ -1,43 +1,25 @@
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-function FormSlide10({ nextSlide, updateFormData, formData, apiEndpoint }) {
+function FormSlide10({ submitFormData, updateFormData, formData }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
+    const form = e.currentTarget;
+    const dataForm = new FormData(form);
+
     const data = {
-      firstname: e.target.firstname.value.trim(),
-      email: e.target.email.value.trim(),
-      password: e.target.password.value.trim(),
-      confirmpassword: e.target.confirmpassword.value.trim(),
+      firstname: dataForm.get("firstname").trim(),
+      email: dataForm.get("email").trim(),
+      password: dataForm.get("password").trim(),
+      confirmPassword: dataForm.get("confirmPassword").trim(),
     };
+  
+    const mergedData = { ...formData, ...data };
 
-    if (data.password !== data.confirmpassword) {
-      alert("Les mots de passe ne correspondent pas !");
-      return;
-    }
-
-    updateFormData(data);
-    console.log(formData);
-    /*try {
-      const response = await fetch(apiEndpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ ...formData, ...data }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`Erreur lors de l'envoi : ${response.status}`);
-      }
-
-      alert("Inscription réussie !");
-      nextSlide(); 
-    } catch (error) {
-      console.error("Erreur :", error.message);
-      alert("Une erreur est survenue lors de l'inscription, veuillez réessayer.");
-    } */
+    updateFormData(mergedData);
+    console.log(mergedData);
+    submitFormData(mergedData);
   };
 
   return (
@@ -69,11 +51,11 @@ function FormSlide10({ nextSlide, updateFormData, formData, apiEndpoint }) {
         />
       </Form.Group>
       <Form.Group>
-        <Form.Label htmlFor="confirmpassword">Vérification de votre mot de passe </Form.Label>
+        <Form.Label htmlFor="confirmPassword">Vérification de votre mot de passe </Form.Label>
         <Form.Control
           type="password"
-          id="confirmpassword"
-          name="confirmpassword"
+          id="confirmPassword"
+          name="confirmPassword"
           placeholder="Confirmez votre mot de passe"
           required
           autoComplete="new-password"

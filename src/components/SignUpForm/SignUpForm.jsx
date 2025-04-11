@@ -3,16 +3,25 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+import { checkMinimumAge } from "../../config/handling.error.js";
+
 function SignUpForm({onSignUp, updateFormData}){
   
 	const handleSignUpWizzard = (e) =>{
 		e.preventDefault();
 
+		const ageValue = Number(e.target.age.value);
+
+		if (ageValue < 60) {
+			checkMinimumAge()
+      return;
+    };
+
 		const formValues = {
-      gender: document.querySelector('input[name="gender"]:checked').value,
-      gender_match: document.querySelector('input[name="gender_match"]:checked').value,
-      age: document.getElementById('age').value,
-      city: document.getElementById('city').value,
+      gender: e.target.gender.value,
+      gender_match: e.target.gender_match.value,
+      age: ageValue,
+      city: e.target.city.value,
     };
 
 		updateFormData(formValues)

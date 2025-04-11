@@ -1,12 +1,25 @@
 import Container from "react-bootstrap/Container";
 
-function ProfilInterest({children}){
+function ProfilInterest({children, profil}){
+
+  if (!profil) {
+    return <Container><p>Données du profil indisponibles.</p></Container>;
+  }
+
   return (
     <Container className="bg-white my-3 py-4 rounded">
       <article>
         <h2 className="mb-5">Centres d'intérets</h2>
         <div>
-          <span className="d-inline-block text-white mb-3 bg-secondary py-1 px-2 rounded ">Jeux de socitété</span>
+          {profil.labels && profil.labels.length > 0 ? (
+            profil.labels.map((label) => (
+              <span key={label.id} className="d-inline-block text-white mb-3 bg-secondary py-1 px-2 mx-2 rounded">
+                {label.name}
+              </span>
+            ))
+          ) : (
+            <p>Aucun centre d'intérets pour le moment</p>
+          )}
         </div>
         {children}  
       </article>

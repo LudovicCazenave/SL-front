@@ -1,4 +1,11 @@
-import { useNavigate, useParams } from "react-router";
+import { useEffect, useState, useContext } from "react";
+import { useNavigate, useParams, useLocation } from "react-router";
+
+import { getMyAccount, deleteMyAccount } from "../../api/api.js";
+
+import { showConfirmationDialog, showSuccessMessage, showCancelAction } from "../../config/handling.error.js";
+import { AuthContext } from "../../contexts/AuthContext.jsx";
+
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
@@ -16,8 +23,22 @@ import EditProfilInterest from "../../components/EditProfilInterest/EditProfilIn
 
 function MyAccountPage() {
 
+  const [myAccount, setMyAccount] = useState(null);
   const navigate = useNavigate();
   const { editView } = useParams();
+  const location = useLocation();
+  const { setAuthenticated } = useContext(AuthContext);
+
+
+  useEffect(() => {
+    async function loadMyAccount(){
+      const data = await getMyAccount();
+      if(data){
+        setMyAccount(data)
+      }
+    }
+    loadMyAccount();
+  },[location.pathname]);
 
   const handleEditView = (view) => {
     navigate(`/mon-compte/modification/${view}`, { replace: true });
@@ -25,6 +46,20 @@ function MyAccountPage() {
 
   const handleBackToMain = () => {
     navigate("/mon-compte", { replace: true });
+  };
+
+  const handleDeleteAccount = async () => {
+    const confirmation = await showConfirmationDialog();
+    if (confirmation.isConfirmed) {
+      const deletedProfile = await deleteMyAccount();
+      if (deletedProfile){
+        setAuthenticated(false);
+
+        await showSuccessMessage(navigate);
+      }
+    } else {
+      showCancelAction();
+    }
   };
 
   if (editView) {
@@ -42,11 +77,10 @@ function MyAccountPage() {
     }
   }
 
-  
   return (
     <>
       <section>
-        <ProfilSection>
+        <ProfilSection profil={myAccount} >
           <Button size="lg" onClick={() => handleEditView("identite")}>
             Modifier
           </Button>
@@ -56,27 +90,27 @@ function MyAccountPage() {
         <Container fluid="lg" className="px-0" style={{ overflowX: "hidden" }}>
           <Row className="d-flex flex-column flex-lg-row-reverse">
             <Col lg="4" className="d-flex flex-column">
-              <ProfilInfo>
+              <ProfilInfo profil={myAccount} >
                 <Button size="lg" onClick={() => handleEditView("generale")}>
                   Modifier
                 </Button>
-                <Button variant="danger" size="lg">
+                <Button variant="danger" size="lg" onClick={handleDeleteAccount} >
                   Supprimer le compte
                 </Button>
               </ProfilInfo>
             </Col>
             <Col>
-              <ProfilPresentation>
+              <ProfilPresentation profil={myAccount} >
                 <Button size="lg" onClick={() => handleEditView("texte-introduction")}>
                   Modifier
                 </Button>
               </ProfilPresentation>
-              <ProfilInterest>
+              <ProfilInterest profil={myAccount} >
                 <Button size="lg" onClick={() => handleEditView("centre-interet")}>
                   Modifier
                 </Button>
               </ProfilInterest>
-              <ProfilEvents />
+              <ProfilEvents profil={myAccount} />
             </Col>
           </Row>
         </Container>

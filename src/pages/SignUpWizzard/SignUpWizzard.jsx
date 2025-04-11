@@ -1,10 +1,15 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
+
+import { signUp } from "../../api/api.js";
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import ProgressBar from "react-bootstrap/ProgressBar";
+
+import { validateFormSignup, showErrorMessage, successSignup } from "../../config/handling.error.js";
 
 import FormSlide1 from "../../components/FormSlide/FormSlide1.jsx";
 import FormSlide2 from "../../components/FormSlide/FormSlide2.jsx";
@@ -18,29 +23,56 @@ import FormSlide9 from "../../components/FormSlide/FormSlide9.jsx";
 import FormSlide10 from "../../components/FormSlide/FormSlide10.jsx";
 
 function SignUpWizzard({ formData, updateFormData }) {
-  const [currentSlide, setCurrentSlide] = useState(0); 
 
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const navigate = useNavigate();
+ 
   console.log("FormData actuel :", formData); 
 
-  const nextSlide = () => {
+  const handleNextSlide = (validationCount = null) => {
+    
+    if (validationCount !== null) {
+      const errorMessage = validateFormSignup(formData, validationCount);
+      if (errorMessage) {
+        
+        showErrorMessage(errorMessage);
+        return;
+      }
+    }
     setCurrentSlide((prevSlide) => Math.min(prevSlide + 1, formSlides.length));
   };
 
   const handleSkip = () => {
-    nextSlide();
+    handleNextSlide();
+  };
+
+  const handleSubmitForm = async (mergedData) => {
+    console.log('mergedData', mergedData)
+    const errorMessage = validateFormSignup(mergedData, 10);
+    if (errorMessage) {
+      showErrorMessage(errorMessage);
+      return;
+    }
+    console.log("Submitting to API", mergedData);
+    const createdUser = await signUp(mergedData);
+
+    if (createdUser) {
+      successSignup();
+      navigate("/connexion", { replace: true })
+    };
   };
 
   const formSlides = [
-    <FormSlide1 key="slide1" handleSkip={handleSkip} updateFormData={updateFormData} nextSlide={nextSlide} />,
-    <FormSlide2 key="slide2" handleSkip={handleSkip} updateFormData={updateFormData} nextSlide={nextSlide} />,
-    <FormSlide3 key="slide3" handleSkip={handleSkip} updateFormData={updateFormData} nextSlide={nextSlide} />,
-    <FormSlide4 key="slide4" handleSkip={handleSkip} updateFormData={updateFormData} nextSlide={nextSlide} />,
-    <FormSlide5 key="slide5" handleSkip={handleSkip} updateFormData={updateFormData} nextSlide={nextSlide} />,
-    <FormSlide6 key="slide6" handleSkip={handleSkip} updateFormData={updateFormData} nextSlide={nextSlide} />,
-    <FormSlide7 key="slide7" handleSkip={handleSkip} updateFormData={updateFormData} nextSlide={nextSlide} />,
-    <FormSlide8 key="slide8" handleSkip={handleSkip} updateFormData={updateFormData} nextSlide={nextSlide} />,
-    <FormSlide9 key="slide9" handleSkip={handleSkip} updateFormData={updateFormData} nextSlide={nextSlide} />,
-    <FormSlide10 key="slide10" formData={formData} submitFormData={() => console.log("Submitting to API", formData)} />,
+    <FormSlide1 key="slide1" handleSkip={handleSkip} updateFormData={updateFormData} nextSlide={() => handleNextSlide(1)} />,
+    <FormSlide2 key="slide2" handleSkip={handleSkip} updateFormData={updateFormData} nextSlide={() => handleNextSlide()} />,
+    <FormSlide3 key="slide3" handleSkip={handleSkip} updateFormData={updateFormData} nextSlide={() => handleNextSlide()} />,
+    <FormSlide4 key="slide4" handleSkip={handleSkip} updateFormData={updateFormData} nextSlide={() => handleNextSlide()} />,
+    <FormSlide5 key="slide5" handleSkip={handleSkip} updateFormData={updateFormData} nextSlide={() => handleNextSlide()} />,
+    <FormSlide6 key="slide6" handleSkip={handleSkip} updateFormData={updateFormData} nextSlide={() => handleNextSlide(6)}  />,
+    <FormSlide7 key="slide7" handleSkip={handleSkip} updateFormData={updateFormData} nextSlide={() => handleNextSlide()} />,
+    <FormSlide8 key="slide8" handleSkip={handleSkip} updateFormData={updateFormData} nextSlide={() => handleNextSlide()} />,
+    <FormSlide9 key="slide9" handleSkip={handleSkip} updateFormData={updateFormData} nextSlide={() => handleNextSlide()} />,
+    <FormSlide10 key="slide10" formData={formData} updateFormData={updateFormData} submitFormData={handleSubmitForm} />,
   ];
 
   const totalSlides = formSlides.length;
