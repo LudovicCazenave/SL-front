@@ -39,7 +39,7 @@ function HomePageConnected(){
       <Container fluid="lg">
         <Row className="d-flex flex-column flex-lg-row-reverse">
           <Col >
-            <Container fluid="lg" className="text-center mt-5">
+            <Container fluid="lg" className="text-center mt-3">
               <h2 className="bg-primary text-white py-3">Profils selectionnés</h2>
               <Row>
                 {profiles.length > 0 ? (
@@ -55,7 +55,7 @@ function HomePageConnected(){
             </Container>
           </Col>
           <Col lg="4">
-            <Container fluid="lg" className="text-center my-5 bg-secondary">
+            <Container fluid="lg" className="text-center my-3 bg-secondary">
               <h2 className="bg-primary text-white py-3">Évènements à venir</h2>
               <Row>
                 {events.length > 0 ? (

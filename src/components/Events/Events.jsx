@@ -1,3 +1,5 @@
+import "./Events.scss"
+
 import EventCard from "../EventCard/EventCard.jsx";
 
 import Container  from "react-bootstrap/Container";
@@ -9,12 +11,12 @@ function Events({ events }) {
 
   return (
     <section>
-      <Container fluid="lg" className="text-center mt-5 bg-secondary px-0">
-        <h2 className="bg-primary text-white py-3">Nos derniers événements</h2>
+      <Container fluid="lg" className="text-center mt-5 bg-secondary">
+      <h2 className="bg-primary text-white py-3 full-width-title">Nos derniers événements</h2> 
         <Row>
           {events.length > 0 ? (
             events.map((event) => (
-              <Col key={event.id} xs={12} lg={6}>
+              <Col key={event.id} xs={12} lg={6} >
                 <EventCard event={event} />
               </Col>
             ))

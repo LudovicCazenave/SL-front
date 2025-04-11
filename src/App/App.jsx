@@ -17,6 +17,7 @@ import NotFoundPage from '../pages/NotFoundPage/NotFoundPage.jsx';
 import EventsPage from '../pages/EventsPage/EventsPage.jsx';
 import ProfilesPage from '../pages/ProfilesPage/ProfilesPage.jsx'
 import ProfilPage from '../pages/ProfilPage/ProfilPage.jsx';
+import EventPage from '../pages/EventPage/EventPage.jsx';
 
 function App() {
 
@@ -74,6 +75,12 @@ function App() {
             <Route path="/evenements" element={
               <ProtectedRoute>
                 <EventsPage />
+              </ProtectedRoute>
+            } />
+
+            <Route path="/evenements/:slug" element={
+              <ProtectedRoute>
+                <EventPage />
               </ProtectedRoute>
             } />
 
