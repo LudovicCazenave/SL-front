@@ -11,6 +11,8 @@ import Col from "react-bootstrap/Col";
 function EventsPage(){
 
   const [events, setEvents] = useState([]);
+  const [selectedCity, setSelectedCity] = useState("");
+  const [selectedLabels, setSelectedLabels] = useState([]);
 
   useEffect(() => {
     async function loadEvents(){
@@ -21,14 +23,25 @@ function EventsPage(){
     }
     loadEvents();
   },[]);
+  console.log(events)
+
+  const filteredEvents = events.filter((event) =>{
+    const matchesCity = selectedCity ? event.city === selectedCity : true;
+
+    const matchesLabels = selectedLabels.length > 0 ? selectedLabels.includes(event.label.name) : true;
+
+    return matchesCity && matchesLabels;
+  });
+
+  
 
   return(
     <section>
       <Container fluid="lg" className="bg-secondary my-3 py-3">
-        <EventsFilter />
+        <EventsFilter setSelectedCity={setSelectedCity} setSelectedLabels={setSelectedLabels} />
         <Row>
-          {events.length > 0 ? (
-            events.map((event) => (
+          {filteredEvents.length > 0 ? (
+            filteredEvents.map((event) => (
               <Col key={event.id} xs={12} md={6} xl={4}>
                 <EventCard event={event} />
               </Col>
