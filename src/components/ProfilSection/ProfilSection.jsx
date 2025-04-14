@@ -1,4 +1,4 @@
-import "./ProfilSection.scss"
+import "./ProfilSection.scss";
 
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
@@ -7,8 +7,7 @@ function ProfilSection({children, profil}){
 
   if (!profil) {
     return <Container><p>Données du profil indisponibles.</p></Container>;
-  }
-
+  };
 
   return(
     <Container className="text-center bg-white my-3 py-4 rounded">

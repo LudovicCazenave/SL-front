@@ -262,4 +262,23 @@ export async function getOneProfil(slug){
   } catch (error) {
     console.error("API non accessible...", error);
   }
-}
+};
+
+export async function getOneEvent(slug){
+  try {
+    
+    const httpResponse = await fetch(`${apiUrl}/events/${slug}`, {
+       credentials: "include"
+    });
+
+    if (!httpResponse.ok) {
+      return null;
+    }
+
+    const event = await httpResponse.json();
+    return event;
+
+  } catch (error) {
+    console.error("API non accessible...", error);
+  }
+};
