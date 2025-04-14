@@ -8,7 +8,16 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 
-function ProfilesFilter() {
+function ProfilesFilter({
+  setSelectedCity,
+  setSelectedGender,
+  setSelectedSmoker,
+  setSelectedPet,
+  setSelectedMarital,
+  setSelectedZodiac,
+  setSelectedInterests
+
+}) {
   const [show, setShow] = useState(false)
 
   const handleToggleClick = () => {
@@ -20,24 +29,27 @@ function ProfilesFilter() {
     setShow(false);
   };
 
+  const handleInterestSelection = (interest) => {
+    setSelectedInterests((currentInterests) =>
+      currentInterests.includes(interest)
+        ? currentInterests.filter((existingInterest) => existingInterest !== interest)
+        : [...currentInterests, interest]
+    );
+  };
+
 
   return (
     <nav className="bg-light p-2 rounded">
       <Row className="align-items-center">
         <Col xs={8} md={10}>
           <Row>
-            <Col xs={6} md={3} className="mb-2">
-              <Button size="lg" className="w-100">PARIS</Button>
-            </Col>
-            <Col xs={6} md={3} className="mb-2">
-              <Button size="lg" className="w-100">LYON</Button>
-            </Col>
-            <Col xs={6} md={3} className="mb-2">
-              <Button size="lg" className="w-100">TOULOUSE</Button>
-            </Col>
-            <Col xs={6} md={3} className="mb-2">
-              <Button size="lg" className="w-100">MARSEILLE</Button>
-            </Col>
+          {["PARIS", "LYON", "TOULOUSE", "MARSEILLE"].map((city) => (
+              <Col key={city} xs={6} md={3} className="mb-2">
+                <Button size="lg" onClick={() => setSelectedCity(city)}>
+                  {city}
+                </Button>
+              </Col>
+            ))}
           </Row>
         </Col>
         <Col xs={4} md={2} className="d-flex justify-content-end">
@@ -50,34 +62,40 @@ function ProfilesFilter() {
               <CloseButton onClick={handleCloseDropDown} />
             </div>
             <Row className="px-4">
-              <Col md={4}>
-                <Form.Group>
-                  <Form.Label htmlFor="height">Taille</Form.Label>
-                  <Form.Control type="number" id="height" name="height" placeholder="Entrez la taille" />
-                </Form.Group>
-              </Col>
-              <Col md={4}>
+               <Col md={6}>
                 <Form.Group className="py-3">
-                  <Form.Label htmlFor="smoker">Fumeur</Form.Label>
+                  <Form.Label htmlFor="gender">Sexe</Form.Label>
                   <div>
-                    <Form.Check inline type="radio" label="Oui" name="smoker" id="smoke-yes" value="true" />
-                    <Form.Check inline type="radio" label="Non" name="smoker" id="smoke-no" value="false" />
+                    <Form.Check inline type="radio" label="Homme" name="gender" id="gender-male" value="Homme" onChange={(e) => setSelectedGender(e.target.value)} />
+                    <Form.Check inline type="radio" label="Femme" name="gender" id="gender-female" value="Femme" onChange={(e) => setSelectedGender(e.target.value)} />
                   </div>
                 </Form.Group>
               </Col>
-              <Col md={4}>
+              <Col md={6}>
                 <Form.Group className="py-3">
-                  <Form.Label htmlFor="age">Âge</Form.Label>
-                  <Form.Control type="number" id="age" name="age" placeholder="Entrez l'âge" />
+                  <Form.Label htmlFor="smoker">Fumeur</Form.Label>
+                  <div>
+                    <Form.Check inline type="radio" label="Oui" name="smoker" id="smoke-yes" value="vrai" onChange={(e) => setSelectedSmoker(e.target.value)} />
+                    <Form.Check inline type="radio" label="Non" name="smoker" id="smoke-no" value="faux" onChange={(e) => setSelectedSmoker(e.target.value)} />
+                  </div>
+                </Form.Group>
+              </Col>
+              <Col md={6}>
+                <Form.Group className="py-3">
+                  <Form.Label htmlFor="pet">Animaux de compagnie</Form.Label>
+                  <div>
+                    <Form.Check inline type="radio" label="Oui" name="pet" id="animals-yes" value="vrai" onChange={(e) => setSelectedPet(e.target.value)} />
+                    <Form.Check inline type="radio" label="Non" name="pet" id="animals-no" value="faux" onChange={(e) => setSelectedPet(e.target.value)} />
+                  </div>
                 </Form.Group>
               </Col>
             </Row>
 
             <Row className="px-4">
-              <Col md={4}>
+              <Col md={6}>
                 <Form.Group className="py-3">
                   <Form.Label htmlFor="marital">Situation</Form.Label>
-                  <Form.Select id="marital" name="marital" defaultValue="Choisir une option">
+                  <Form.Select id="marital" name="marital" defaultValue="Choisir une option" onChange={(e) => setSelectedMarital(e.target.value)} >
                     <option value="">Choisir une option</option>
                     <option value="Divorcé">Divorcé</option>
                     <option value="Veuf/veuve">Veuf/veuve</option>
@@ -86,19 +104,11 @@ function ProfilesFilter() {
                   </Form.Select>
                 </Form.Group>
               </Col>
-              <Col md={4}>
-                <Form.Group className="py-3">
-                  <Form.Label htmlFor="pet">Animaux de compagnie</Form.Label>
-                  <div>
-                    <Form.Check inline type="radio" label="Oui" name="pet" id="animals-yes" value="true"/>
-                    <Form.Check inline type="radio" label="Non" name="pet" id="animals-no" value="false" />
-                  </div>
-                </Form.Group>
-              </Col>
-              <Col md={4}>
+              
+              <Col md={6}>
                 <Form.Group className="py-3">
                   <Form.Label htmlFor="zodiac">Signe astrologique</Form.Label>
-                  <Form.Select id="zodiac" name="zodiac" defaultValue="Choisir un signe">
+                  <Form.Select id="zodiac" name="zodiac" defaultValue="Choisir un signe" onChange={(e) => setSelectedZodiac(e.target.value)} >
                     <option value="">Choisir un signe</option>
                     <option value="Bélier">Bélier</option>
                     <option value="Taureau">Taureau</option>
@@ -115,19 +125,16 @@ function ProfilesFilter() {
                   </Form.Select>
                 </Form.Group>
               </Col>
-            </Row>
-
-            <Row className="px-4">
-              <Col md={12}>
+              <Col md={6}>
                 <Form.Group className="py-3">
                   <Form.Label htmlFor="labels">Centres d'intérêts</Form.Label>
                   <div>
-                    <Form.Check type="checkbox" label="Nature" id="nature" name="labels" value="Nature" />
-                    <Form.Check type="checkbox" label="Culture" id="culture" name="labels" value="Culturel" />
-                    <Form.Check type="checkbox" label="Sports/bien-être" id="sport" name="labels" value="Sports/bien-être" />
-                    <Form.Check type="checkbox" label="Soirée à thème" id="soiree-a-theme" name="labels" value="Soirée à thème" />
-                    <Form.Check type="checkbox" label="Artistique" id="artistique" name="labels" value="Artistique"/>
-                    <Form.Check type="checkbox" label="Jeux de société" id="jeux-de-societe" name="labels" value="Jeux de société" />
+                    <Form.Check type="checkbox" label="Nature" id="nature" name="labels" value="Nature" onChange={() => handleInterestSelection("Nature")}/>
+                    <Form.Check type="checkbox" label="Culture" id="culture" name="labels" value="Culturel" onChange={() => handleInterestSelection("Culturel")} />
+                    <Form.Check type="checkbox" label="Sports/bien-être" id="sport" name="labels" value="Sports/bien-être" onChange={() => handleInterestSelection("Sports/bien-être")} />
+                    <Form.Check type="checkbox" label="Soirée à thème" id="soiree-a-theme" name="labels" value="Soirée à thème" onChange={() => handleInterestSelection("Soirée à thème")} />
+                    <Form.Check type="checkbox" label="Artistique" id="artistique" name="labels" value="Artistique" onChange={() => handleInterestSelection("Artistique")} />
+                    <Form.Check type="checkbox" label="Jeux de société" id="jeux-de-societe" name="labels" value="Jeux de société" onChange={() => handleInterestSelection("Jeux de société")} />
                   </div>
                 </Form.Group>
               </Col>

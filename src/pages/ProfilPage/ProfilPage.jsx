@@ -38,7 +38,7 @@ function ProfilPage(){
         </ProfilSection>
       </section>
       <section>
-      <Container fluid="lg" className="px-0" style={{ overflowX: "hidden" }}>
+      <Container fluid="lg" className="px-0 " style={{ overflowX: "hidden" }}>
           <Row className="d-flex flex-column flex-lg-row-reverse mb-3">
             <Col lg="4" className="d-flex flex-column">
               <ProfilInfo profil={profil}>

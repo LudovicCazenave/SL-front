@@ -1,3 +1,5 @@
+import "./SignIn.scss";
+
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router";
 
@@ -46,7 +48,7 @@ function SignIn(){
 
 
   return(
-    <Container className="bg-secondary rounded-4 my-5 py-3 mx-auto" style={{ maxWidth: "400px" }}>
+    <Container className="bg-secondary rounded-4 my-3 py-3 mx-auto size">
       <Form className="text-center" onSubmit={handleSubmit}>
       <Form.Group className="my-3">
         <Form.Label htmlFor="email">Email</Form.Label>
@@ -58,7 +60,7 @@ function SignIn(){
         <Form.Control type="password" id="password" name="password" placeholder="Votre mot de passe..." required autoComplete="new-password" value={formData.password} onChange={handleChange}
         />
       </Form.Group>
-      <Button size="lg" type="submit" className="my-3 w-100">Se connecter</Button>
+      <Button size="lg" type="submit" className="mt-3 w-100">Se connecter</Button>
       </Form>
     </Container>
   );

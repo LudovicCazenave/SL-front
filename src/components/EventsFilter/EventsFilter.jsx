@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import CloseButton from "react-bootstrap/CloseButton";
 import Button from "react-bootstrap/Button";

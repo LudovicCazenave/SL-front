@@ -23,7 +23,6 @@ function EventsPage(){
     }
     loadEvents();
   },[]);
-  console.log(events)
 
   const filteredEvents = events.filter((event) =>{
     const matchesCity = selectedCity ? event.city === selectedCity : true;
