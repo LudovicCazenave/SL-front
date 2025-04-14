@@ -18,6 +18,7 @@ import EventsPage from '../pages/EventsPage/EventsPage.jsx';
 import ProfilesPage from '../pages/ProfilesPage/ProfilesPage.jsx'
 import ProfilPage from '../pages/ProfilPage/ProfilPage.jsx';
 import EventPage from '../pages/EventPage/EventPage.jsx';
+import MessagesPage from '../pages/MessagesPage/MessagesPage.jsx';
 
 function App() {
 
@@ -93,6 +94,12 @@ function App() {
             <Route path="/profils/:slug" element={
               <ProtectedRoute>
                 <ProfilPage />
+              </ProtectedRoute>
+            } />
+
+            <Route path="/messages" element={
+              <ProtectedRoute>
+                <MessagesPage />
               </ProtectedRoute>
             } />
 
