@@ -168,4 +168,13 @@ export function successProfileUpdate() {
   });
 };
 
+export function successSendMessage() {
+  MySwal.fire({
+    title: "Message Envoyé !",
+    text: "Votre message a été envoyé avec succès.",
+    icon: "success",
+    confirmButtonText: "OK"
+  });
+};
+
 

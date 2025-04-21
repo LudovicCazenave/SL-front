@@ -1,5 +1,5 @@
 import {useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 
 import { getOneProfil } from "../../api/api.js";
 
@@ -19,6 +19,7 @@ function ProfilPage(){
 
   const { slug } = useParams();
   const [profil, setProfil] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
    
@@ -30,6 +31,15 @@ function ProfilPage(){
     };
     loadProfil();
   }, [slug]);
+
+  const handleSendMessage = () => {
+    if (profil) {
+      navigate("/messages", { state: { receiver: profil } });
+    } else {
+      console.error("Profil non chargé, impossible d'envoyer un message");
+    }
+  };
+
 
   return(
     <>
@@ -52,7 +62,7 @@ function ProfilPage(){
               <ProfilEvents profil={profil}/>
             </Col>
               <Container fluid className="text-center">
-                <Button  size="lg" variant="warning">
+                <Button  size="lg" variant="warning" onClick={handleSendMessage}>
                   Envoyer un message
                 </Button>
               </Container>  

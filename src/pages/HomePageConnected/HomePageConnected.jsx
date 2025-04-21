@@ -13,7 +13,6 @@ function HomePageConnected(){
 
   const [events, setEvents] = useState([]);
   const [profiles, setProfiles] = useState([]);
-  console.log(profiles)
 
   useEffect(() => {
       async function loadEvents() {
