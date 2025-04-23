@@ -10,7 +10,7 @@ function FormSlide8({ nextSlide, updateFormData }) {
 
     const fileInput = e.target.picture.files[0];
     const formData = fileInput
-      ? { picture: fileInput.name }
+      ? { picture: fileInput }
       : {};
 
     updateFormData(formData);
@@ -23,7 +23,7 @@ function FormSlide8({ nextSlide, updateFormData }) {
   };
 
   return (
-    <Form key="form-slide-8" className="text-center" onSubmit={handleSubmit}>
+    <Form key="form-slide-8" className="text-center" onSubmit={handleSubmit} encType="multipart/form-data">
       <Form.Group>
         <Form.Label htmlFor="picture">Choisissez une photo de profil</Form.Label>
         <Form.Control type="file" id="picture" name="picture" accept="image/*" />

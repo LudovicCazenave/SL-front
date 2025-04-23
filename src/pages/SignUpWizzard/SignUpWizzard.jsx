@@ -53,6 +53,25 @@ function SignUpWizzard({ formData, updateFormData }) {
       showErrorMessage(errorMessage);
       return;
     }
+
+    const formDataToSend = new FormData();
+  
+    // Ajouter toutes les propriétés au FormData
+    Object.entries(mergedData).forEach(([key, value]) => {
+      // Ne pas modifier l'objet File pour picture
+      if (key === 'picture' && value instanceof File) {
+        formDataToSend.append(key, value);
+      } 
+      // Pour les tableaux comme labels
+      else if (Array.isArray(value)) {
+        value.forEach(item => formDataToSend.append(key, item));
+      }
+      // Pour les autres valeurs
+      else {
+        formDataToSend.append(key, value);
+      }
+    });
+    
     console.log("Submitting to API", mergedData);
     const createdUser = await signUp(mergedData);
 

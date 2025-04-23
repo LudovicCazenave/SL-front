@@ -20,13 +20,27 @@ export async function getLastEvent() {
   }
 };
 
-export async function signUp(data) {
+export async function signUp(userData) {
   try {
+
+    const formData = userData instanceof FormData ? userData : new FormData();
+
+
+    if (!(userData instanceof FormData)) {
+      Object.entries(userData).forEach(([key, value]) => {
+        
+        if (Array.isArray(value)) {
+          value.forEach(item => formData.append(key, item));
+        } else {
+          formData.append(key, value);
+        }
+      });
+    }
+
     const httpResponse = await fetch(`${apiUrl}/signup`, {
       method: "POST",
       credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
+      body: formData
     });
 
     if (!httpResponse.ok) {
