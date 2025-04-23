@@ -5,7 +5,10 @@ export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   
-  const [authenticated, setAuthenticated] = useState(null);
+  const [authenticated, setAuthenticated] = useState({
+    isAuthenticated: false,
+    userId: null,
+  });
 
   useEffect(() => {
     async function verifyToken() {
@@ -15,10 +18,10 @@ export function AuthProvider({ children }) {
     verifyToken();
   }, []);
 
+  
   if (authenticated === null) {
     return <div style={{ textAlign: "center", padding: "2rem" }}>Loading...</div>;
   }
-
   return (
     <AuthContext.Provider value={{ authenticated, setAuthenticated }}>
       {children}

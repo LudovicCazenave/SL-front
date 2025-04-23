@@ -20,13 +20,27 @@ export async function getLastEvent() {
   }
 };
 
-export async function signUp(data) {
+export async function signUp(userData) {
   try {
+
+    const formData = userData instanceof FormData ? userData : new FormData();
+
+
+    if (!(userData instanceof FormData)) {
+      Object.entries(userData).forEach(([key, value]) => {
+        
+        if (Array.isArray(value)) {
+          value.forEach(item => formData.append(key, item));
+        } else {
+          formData.append(key, value);
+        }
+      });
+    }
+
     const httpResponse = await fetch(`${apiUrl}/signup`, {
       method: "POST",
       credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
+      body: formData
     });
 
     if (!httpResponse.ok) {
@@ -76,7 +90,8 @@ export async function authentificationUser() {
       return false
     }
 
-    return true;
+    const user = await httpResponse.json();
+    return user;
 
   } catch (error) {
     console.error('Erreur de vérification du token :', error)
@@ -279,6 +294,48 @@ export async function getOneEvent(slug){
     return event;
 
   } catch (error) {
+    console.error("API non accessible...", error);
+  }
+};
+
+export async function getAllMessages(){
+  try {
+
+    const httpResponse = await fetch(`${apiUrl}/messages`, {
+      credentials: "include"
+    });
+
+    if (!httpResponse.ok) {
+      return null;
+    }
+
+    const messages = await httpResponse.json();
+    return messages;
+
+  } catch (error) {
+    console.error("API non accessible...", error);
+  }
+};
+
+export async function sendMessage(data) {
+  try {
+    const httpResponse = await fetch(`${apiUrl}/messages`, {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+
+    if (!httpResponse.ok) {
+      showErrorMessage('Message non envoyé')
+      return null;
+    }
+
+    const newMessage = await httpResponse.json();
+    return newMessage;
+
+  } catch (error) {
+    errorServer();
     console.error("API non accessible...", error);
   }
 };
