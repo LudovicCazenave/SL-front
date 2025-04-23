@@ -9,10 +9,16 @@ function ProfilSection({children, profil}){
     return <Container><p>Données du profil indisponibles.</p></Container>;
   };
 
+  if(profil.picture === "http://localhost:3000/null"){
+    profil.picture = ""
+  }
+
+  const defaultImage = profil.gender === "Femme" ? "/src/assets/img/diverse-img/profils/Celine.png" : "/src/assets/img/diverse-img/profils/Jacky.jpg";
+
   return(
     <Container className="text-center bg-white my-3 py-4 rounded">
       <article>
-        <Image src={profil.picture || "/src/assets/img/diverse-img/profils/Celine.png"} alt={profil.firstname} roundedCircle width="250" height="250" className="border border-3 border-primary img"/>
+        <Image src={profil.picture || defaultImage} alt={profil.firstname} roundedCircle width="250" height="250" className="border border-3 border-primary img"/>
         <div className="my-4">
           <p><strong>Prénom :</strong> <span>{profil.firstname}</span></p>
           <p><strong>Age :</strong> <span>{profil.age} ans</span></p>
