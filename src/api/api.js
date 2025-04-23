@@ -20,14 +20,13 @@ export async function getLastEvent() {
   }
 };
 
-export async function signUp(userData) {
+export async function signUp(data) {
   try {
 
-    const formData = userData instanceof FormData ? userData : new FormData();
+    const formData = data instanceof FormData ? data : new FormData();
 
-
-    if (!(userData instanceof FormData)) {
-      Object.entries(userData).forEach(([key, value]) => {
+    if (!(data instanceof FormData)) {
+      Object.entries(data).forEach(([key, value]) => {
         
         if (Array.isArray(value)) {
           value.forEach(item => formData.append(key, item));
@@ -161,11 +160,24 @@ export async function getMyAccount() {
 
 export async function editMyAccount(data) {
   try {
+
+    const formData = data instanceof FormData ? data : new FormData();
+
+    if (!(data instanceof FormData)) {
+      Object.entries(data).forEach(([key, value]) => {
+        
+        if (Array.isArray(value)) {
+          value.forEach(item => formData.append(key, item));
+        } else {
+          formData.append(key, value);
+        }
+      });
+    }
+
     const httpResponse = await fetch(`${apiUrl}/my-account`, {
       method: "PATCH",
       credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
+      body: formData
     });
 
     if (!httpResponse.ok) {

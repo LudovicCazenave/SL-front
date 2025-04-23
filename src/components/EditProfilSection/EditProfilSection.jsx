@@ -58,7 +58,7 @@ function EditProfilSection({handleBackToMain}){
   return (
     <Container className="bg-white rounded text-center p-4 my-3" style={{ maxWidth: "800px" }}>
       <h1 className="border-bottom mb-3 pb-3">Modification Identité</h1>
-      <Form onSubmit={handleSubmit} >
+      <Form onSubmit={handleSubmit} encType="multipart/form-data">
         <Form.Group className="my-5">
           <Form.Label htmlFor="edit-picture">Télécharger une photo de profil</Form.Label>
           <Form.Control type="file" id="edit-picture" name="picture" accept="image/*" onChange={handleChange} />

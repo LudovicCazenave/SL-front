@@ -20,14 +20,15 @@ function ProfilCard({
     navigate(`/profils/${profil.slug}`);
   };
 
-	
+	const defaultImage = profil.gender === "Femme" ? "/src/assets/img/diverse-img/profils/Celine.png" : "/src/assets/img/diverse-img/profils/Jacky.jpg";
+
   return (
     <Container fluid="lg" className='p-4 text-center'>
 			<a href="#" style={{ textDecoration: "none" }}>
 				<Card onClick={handleClick} >
 					<Card.Title className='py-3 h1'>{profil.firstname}</Card.Title>
 					<div className="relative">
-          <Card.Img src="/src/assets/img/diverse-img/profils/Celine.png" />
+          <Card.Img src={defaultImage} />
           <span className="bg-primary text-white rounded p-1 absolute" >
           	{profil.age} ans
           </span>
