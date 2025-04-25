@@ -19,6 +19,9 @@ import ProfilesPage from '../pages/ProfilesPage/ProfilesPage.jsx'
 import ProfilPage from '../pages/ProfilPage/ProfilPage.jsx';
 import EventPage from '../pages/EventPage/EventPage.jsx';
 import MessagesPage from '../pages/MessagesPage/MessagesPage.jsx';
+import LegalInfoPage from '../pages/LegalInfoPage/LegalInfoPage.jsx';
+import SiteMapPage from '../pages/SiteMapPage/SiteMapPage.jsx';
+import DataProtectionPage from '../pages/DataProtectionPage/DataProtectionPage.jsx';
 
 function App() {
 
@@ -55,6 +58,9 @@ function App() {
             
             <Route path="/inscription" element={<SignUpWizzard formData={formData} updateFormData={updateFormData} />} />
             <Route path="/connexion" element={<SignIn />} />
+            <Route path='/informations-legales' element={<LegalInfoPage />} />
+            <Route path='/plan-de-site' element={<SiteMapPage />} />
+            <Route path='/protection-des-donnees' element={<DataProtectionPage />} />
             <Route path="/tableau-de-bord" element={
               <ProtectedRoute>
                 <HomePageConnected />
