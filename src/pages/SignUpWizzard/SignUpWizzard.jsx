@@ -56,17 +56,17 @@ function SignUpWizzard({ formData, updateFormData }) {
 
     const formDataToSend = new FormData();
   
-    // Ajouter toutes les propriétés au FormData
+    
     Object.entries(mergedData).forEach(([key, value]) => {
-      // Ne pas modifier l'objet File pour picture
+      
       if (key === 'picture' && value instanceof File) {
         formDataToSend.append(key, value);
       } 
-      // Pour les tableaux comme labels
+      
       else if (Array.isArray(value)) {
         value.forEach(item => formDataToSend.append(key, item));
       }
-      // Pour les autres valeurs
+      
       else {
         formDataToSend.append(key, value);
       }
@@ -82,7 +82,7 @@ function SignUpWizzard({ formData, updateFormData }) {
   };
 
   const formSlides = [
-    <FormSlide1 key="slide1" handleSkip={handleSkip} updateFormData={updateFormData} nextSlide={() => handleNextSlide(1)} />,
+    <FormSlide1 key="slide1" handleSkip={handleSkip} updateFormData={updateFormData} nextSlide={() => handleNextSlide(1)} formData={formData}/>,
     <FormSlide2 key="slide2" handleSkip={handleSkip} updateFormData={updateFormData} nextSlide={() => handleNextSlide()} />,
     <FormSlide3 key="slide3" handleSkip={handleSkip} updateFormData={updateFormData} nextSlide={() => handleNextSlide()} />,
     <FormSlide4 key="slide4" handleSkip={handleSkip} updateFormData={updateFormData} nextSlide={() => handleNextSlide()} />,
@@ -121,7 +121,7 @@ function SignUpWizzard({ formData, updateFormData }) {
                 </Button>
               </Col>
               <Col xs="auto">
-                <Button size="lg" variant="dark">
+                <Button size="lg" variant="dark" onClick={() => navigate("/accueil")}>
                   Retour vers l'accueil
                 </Button>
               </Col>

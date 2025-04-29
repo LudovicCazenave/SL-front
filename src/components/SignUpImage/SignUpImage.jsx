@@ -4,7 +4,7 @@ import CloseButton from 'react-bootstrap/CloseButton';
 function SignUpImage({ children, isLargeScreen, showFormOnSmallScreen, onButtonClick, onCloseForm }) {
   return (
     <>
-      <Image src="/src/assets/img/diverse-img/hands.jpg" fluid className="mx-auto" />
+      <Image src="/src/assets/img/diverse-img/hands.jpg" alt='Image introduction SeniorLove' fluid className="mx-auto" />
       <div
         className={`position-absolute top-10 start-50 translate-middle-x rounded  text-center p-3 w-50 ${
           !isLargeScreen && showFormOnSmallScreen ? 'bg-opacity-100 bg-info' : 'bg-opacity-25 bg-light'
@@ -15,7 +15,7 @@ function SignUpImage({ children, isLargeScreen, showFormOnSmallScreen, onButtonC
           <CloseButton
             onClick={onCloseForm}
             className="position-absolute top-0 end-0 m-3"
-            aria-label="Close"
+            aria-label="Boutton de fermeture"
           />
         )}
         <img

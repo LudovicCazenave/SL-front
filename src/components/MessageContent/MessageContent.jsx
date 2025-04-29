@@ -1,6 +1,8 @@
+import "./MessageContent.scss"
+
 import { useContext, useState } from "react";
 
-
+import { AuthContext } from "../../contexts/AuthContext.jsx";
 import { getAllMessages, sendMessage } from "../../api/api.js";
 import { successSendMessage } from "../../config/handling.error.js";
 
@@ -8,7 +10,7 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 import Form from "react-bootstrap/Form";
-import { AuthContext } from "../../contexts/AuthContext.jsx";
+
 
 
 function MessageContent({ messages, setMessages, receiver }) {
@@ -68,8 +70,7 @@ function MessageContent({ messages, setMessages, receiver }) {
               <p
                 className={`${
                   message.sender_id === currentUser.userId ? "bg-info" : "bg-secondary"
-                } rounded d-inline-block p-2`}
-                style={{ maxWidth: "75%", wordWrap: "break-word" }}
+                } rounded d-inline-block p-2 message-format`}
               >
                 <strong>{message.content}</strong>
               </p>

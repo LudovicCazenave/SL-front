@@ -177,4 +177,14 @@ export function successSendMessage() {
   });
 };
 
+export function successRegister() {
+  MySwal.fire({
+    title: "Inscription a l'événement !",
+    text: "Vous êtes bien inscrit a notre événement.",
+    icon: "success",
+    confirmButtonText: "OK"
+  });
+};
+
+
 

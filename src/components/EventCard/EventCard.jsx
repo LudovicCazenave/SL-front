@@ -22,11 +22,10 @@ function EventCard({
 
 	return (
 		<Container fluid="lg" className='p-4 text-center' >
-			<a href="#" style={{ textDecoration: "none" }}>
-				<Card onClick={handleClick} >
+				<Card className="clickable-card" aria-label={`Voir la fiche  de l'événement ${event.description}`} onClick={handleClick} >
 					<Card.Title className='py-3 h1'>{event.city}</Card.Title>
 					<div className="relative">
-					<Card.Img src='/src/assets/img/diverse-img/games.jpg'/>
+					<Card.Img src='/src/assets/img/diverse-img/games.jpg' alt="Image de l'événement"/>
 					<span className='bg-primary text-white rounded p-1  absolute'>
 						{event.label.name}
 					</span>
@@ -37,9 +36,7 @@ function EventCard({
 							{event.description}
 						</Card.Text>
 					</Card.Body>
-				</Card>
-				
-			</a>
+				</Card>	
 		</Container>
 	);
 };

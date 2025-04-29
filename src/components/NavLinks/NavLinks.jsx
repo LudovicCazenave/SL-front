@@ -17,15 +17,11 @@ function NavLinks({ setCurrentPage, onSelect }) {
   const isOnMonCompte = location.pathname === "/mon-compte";
 
   const handleLogout = async () => {
-    try{
       const logout = await logOutMyAccount();
       if(logout){
         setAuthenticated(false);
         setCurrentPage('');
       } 
-    } catch (error){
-      console.error("error logout", error)
-    }
   };
 
   const getLinkClassName = ({ isActive }) => {
@@ -73,6 +69,7 @@ function NavLinks({ setCurrentPage, onSelect }) {
               }
               onSelect();
             }}
+            aria-label={isOnMonCompte ? "Lien pour se déconnecter" : "Lien vers Mon Compte"}
           >
             {isOnMonCompte ? "Se déconnecter" : "Mon compte"}
           </Nav.Link>

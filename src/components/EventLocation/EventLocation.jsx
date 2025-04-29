@@ -1,60 +1,62 @@
 import "./EventLocation.scss";
 
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import Container from "react-bootstrap/Container";
 
 
 function EventLocation({ children, event }) {
   const mapRef = useRef(null);
 
-  useEffect(() => {
-    if (!event) return;
-    
-    const fullAddress = `${event.street_number} ${event.street}, ${event.zip_code} ${event.city}, France`;
-    
-    const initMap = () => {
-      if (!window.google || !mapRef.current) return;
-      
-      const geocoder = new window.google.maps.Geocoder();
-      const map = new window.google.maps.Map(mapRef.current, {
-        center: { lat: 43.604652, lng: 1.444209 },
-        zoom: 15,
-      });
-      
-      geocoder.geocode({ address: fullAddress }, (results, status) => {
-        if (status === "OK" && results[0]) {
-         
-          map.setCenter(results[0].geometry.location);
-          
-          new window.google.maps.Marker({
-            map: map,
-            position: results[0].geometry.location,
-          });
-        } else {
-          console.error(
-            "Le géocodage a échoué pour la raison suivante : " + status
-          );
-        }
-      });
-    };
-
-    if (window.google && window.google.maps) {
-      initMap();
+  const initMap = useCallback(() => {
+    if (!window.google || !window.google.maps || !mapRef.current){
       return;
     } 
 
-    window.initMap = initMap;
+    const fullAddress = `${event.street_number} ${event.street}, ${event.zip_code} ${event.city}, France`;
+    const geocoder = new window.google.maps.Geocoder();
+    const map = new window.google.maps.Map(mapRef.current, {
+      center: { lat: 43.604652, lng: 1.444209 },
+      zoom: 15,
+    });
 
-    if (!document.getElementById("google-maps-script")) {
-      const script = document.createElement("script");
-      script.id = "google-maps-script";
-      script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAJgVAY8IphlYThiG6tFg6PmyzF0a48qcQ&callback=initMap&loading=async`;
-      script.async = true;
-      script.defer = true;
-      document.head.appendChild(script);
-    }
-
+    geocoder.geocode({ address: fullAddress }, (results, status) => {
+      if (status === "OK" && results[0]) {
+       
+        map.setCenter(results[0].geometry.location);
+        
+        new window.google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location,
+        });
+      } else {
+        console.error(
+          "Le géocodage a échoué pour la raison suivante : " + status
+        );
+      }
+    });
   }, [event]);
+
+  useEffect(() => {
+    if (!event) return;
+    
+    window.initMap = initMap;
+    
+    if (window.tarteaucitron) {
+      window.tarteaucitron.user.mapscallback = "initMap";
+      
+      if (window.tarteaucitron.state.googlemaps === true) {
+        setTimeout(initMap, 100);
+      }
+    }
+    
+    
+    return () => {
+      if (window.tarteaucitron) {
+        window.tarteaucitron.user.mapscallback = null;
+      }
+      window.initMap = null;
+    };
+  }, [event, initMap]);
 
   if (!event) {
     return (
@@ -80,8 +82,7 @@ function EventLocation({ children, event }) {
             </strong>
           </p>
         </div>
-        <div id="map" ref={mapRef} className="rounded size"
-        ></div>
+        <div ref={mapRef} className="googlemaps-canvas rounded size-format" data-cookieconsent="googlemaps"></div>
         <div>
           {children}
         </div>

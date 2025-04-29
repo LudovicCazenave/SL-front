@@ -14,7 +14,7 @@ function EventSection({ children, event }){
   return(
     <Container className="text-center bg-white my-3 py-4 rounded">
       <article>
-        <Image src="/src/assets/img/diverse-img/games.jpg" alt=""  width="400" height="250" className="rounded img"/>
+        <Image src="/src/assets/img/diverse-img/games.jpg" alt="image de l'événement"  width="400" height="250" className="rounded img"/>
         <div className="my-4">
           <p><strong>Date :</strong> <span>{formatDate(event.date)}</span></p>
           <p><strong>Horaire :</strong> <span>{formatHour(event.time)}h</span></p>

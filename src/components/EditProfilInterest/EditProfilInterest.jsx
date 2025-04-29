@@ -1,3 +1,5 @@
+import "./EditProfilInterest.scss"
+
 import { useState } from "react";
 
 import { editMyAccount } from "../../api/api.js";
@@ -51,7 +53,7 @@ function EditProfilInterest({handleBackToMain}){
 
 
   return (
-    <Container className="bg-white rounded text-center p-4 my-3" style={{ maxWidth: "800px" }}>
+    <Container className="bg-white rounded text-center p-4 my-3 size-format">
       <h1 className="border-bottom mb-3 pb-3">Modification centres d'intérêts</h1>
       <Form onSubmit={handleSubmit} >
         <Form.Group className="my-5">

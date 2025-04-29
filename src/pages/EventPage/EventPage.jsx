@@ -3,7 +3,8 @@ import "./EventPage.scss"
 import {useEffect, useState } from "react";
 import { useParams } from "react-router";
 
-import { getOneEvent } from "../../api/api.js";
+import { getOneEvent, registerForEvent } from "../../api/api.js";
+import { successRegister, showErrorMessage} from "../../config/handling.error.js";
 
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
@@ -31,6 +32,18 @@ function EventPage(){
     loadEvent()
   }, [slug]);
 
+  const handleRegisterEvent = async () => {
+   
+      const registeredEvent = await registerForEvent(slug, {});
+      
+      if (registeredEvent) {
+        await successRegister(); 
+      } else{
+        showErrorMessage("Echec lors de l'inscription ")
+      }
+  };
+  
+
   return (
     <>
       <EventTitle event={event} />
@@ -56,7 +69,7 @@ function EventPage(){
           </Row>
           <Row className="text-center my-3">
             <Col>
-              <Button size="lg" variant="warning">
+              <Button size="lg" variant="warning" onClick={handleRegisterEvent}>
                 S'inscrire
               </Button>
             </Col>

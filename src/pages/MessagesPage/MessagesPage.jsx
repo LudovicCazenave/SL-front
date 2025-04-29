@@ -14,6 +14,7 @@ import { AuthContext } from "../../contexts/AuthContext.jsx";
 
 function MessagesPage(){
 
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
   const [messages, setMessages] = useState([]);
   const [selectedContact, setSelectedContact] = useState("");
   const location = useLocation();
@@ -30,7 +31,7 @@ function MessagesPage(){
       }
     }
     loadMessages();
-  },[]);
+  },[refreshTrigger]);
 
   const contactsMap = new Map();
 
@@ -46,6 +47,12 @@ function MessagesPage(){
   const receiverFromNavigation = location.state?.receiver || "";
 
   const activeReceiver = selectedContact || receiverFromNavigation;
+
+  useEffect(() => {
+    if (receiverFromNavigation && !selectedContact) {
+      setSelectedContact(receiverFromNavigation);
+    }
+  }, [receiverFromNavigation, selectedContact]);
 
   const filteredMessages = 
     activeReceiver
@@ -67,7 +74,7 @@ function MessagesPage(){
           <ContactList contacts={contacts} onSelectContact={setSelectedContact} />
         </Col>
         <Col xs={12} lg={10}>
-          <MessageContent  messages={filteredMessages} setMessages={setMessages} receiver={activeReceiver} />
+          <MessageContent  messages={filteredMessages} setMessages={setMessages} receiver={activeReceiver} onMessageSent={() => setRefreshTrigger(prev => prev + 1)}/>
         </Col>
       </Row>
     </Container>

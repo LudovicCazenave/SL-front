@@ -12,6 +12,7 @@ import Form from 'react-bootstrap/Form';
 
 import { AuthContext } from '../../contexts/AuthContext.jsx';
 
+
 library.add(faBars);
 
 function Header() {
@@ -30,20 +31,21 @@ function Header() {
             width="60"
             height="60"
             className="d-inline-block align-top"
+            aria-label={authenticated ? "Retour au tableau de bord" : "Retour à l'accueil"}
           />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" className="text-white w-40" onClick={() => setExpanded(!expanded)}>
-          <FontAwesomeIcon icon="fa-solid fa-bars" />
+          <FontAwesomeIcon icon="fa-solid fa-bars" aria-hidden="true" />
         </Navbar.Toggle >
         <Navbar.Collapse id="navbarScroll">
-          <Form>
+          {/* <Form>
             <Form.Control
               type="search"
               placeholder="Rechercher"
               className="me-2"
-              aria-label="Search"
+              aria-label="Barre de recherche"
             />
-          </Form>
+          </Form> */}
           <NavLinks setCurrentPage={setCurrentPage} onSelect={() => setExpanded(false)} />
 
         </Navbar.Collapse>

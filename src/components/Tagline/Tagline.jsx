@@ -22,7 +22,7 @@ function Tagline(){
 				</Col>
 				<Col lg="3  my-5  px-4">
 					<img src="/src/assets/img/icon/verified-profil.svg" alt="icone profil vérifié" width="80" height="80"/>
-					<p  className="mt-4">Des rencontres basées sur vos centres d’intérêt</p>
+					<p  className="mt-4">Profils vérifiés pour des échanges en toute confiance</p>
 				</Col>
 			</Row>
 			</Container>

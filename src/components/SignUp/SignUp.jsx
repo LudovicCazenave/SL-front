@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
 
@@ -51,7 +51,7 @@ function SignUp({ updateFormData }) {
             {isLargeScreen || showFormOnSmallScreen ? (
               <SignUpForm onSignUp={handleSignUp} updateFormData={updateFormData}/>
             ) : (
-              <Button size="lg"  type='button' className="btn-primary" onClick={handleButtonClick}>
+              <Button size="lg"  type='button' className="btn-primary" aria-label="Démarer l'inscription à SeniorLove" onClick={handleButtonClick}>
                 Rejoindre SeniorLove
               </Button>
             )}
@@ -59,6 +59,6 @@ function SignUp({ updateFormData }) {
       </Container>
     </section>
   );
-}
+};
 
 export default SignUp;

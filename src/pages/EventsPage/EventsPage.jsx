@@ -37,7 +37,7 @@ function EventsPage(){
   return(
     <section>
       <Container fluid="lg" className="bg-secondary my-3 py-3">
-        <EventsFilter setSelectedCity={setSelectedCity} setSelectedLabels={setSelectedLabels} />
+        <EventsFilter setSelectedCity={setSelectedCity} setSelectedLabels={setSelectedLabels}  selectedLabels={selectedLabels}/>
         <Row>
           {filteredEvents.length > 0 ? (
             filteredEvents.map((event) => (
