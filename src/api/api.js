@@ -310,6 +310,29 @@ export async function getOneEvent(slug){
   }
 };
 
+export async function registerForEvent(slug, data){
+  try {
+    
+    const httpResponse = await fetch(`${apiUrl}/events/${slug}/register`,{
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+
+    if (!httpResponse.ok) {
+      return null;
+    }
+
+    const registerForOneEvent = await httpResponse.json();
+    return registerForOneEvent;
+
+  } catch (error) {
+    errorServer();  
+    console.error("API non accessible...", error);
+  }
+};
+
 export async function getAllMessages(){
   try {
 

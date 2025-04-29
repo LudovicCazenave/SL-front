@@ -9,3 +9,12 @@
   top: 5%;
   right: 5%;
 }
+
+.clickable-card {
+  cursor: pointer; 
+  transition: transform 0.2s; 
+}
+
+.clickable-card:hover {
+  transform: scale(1.03); 
+}

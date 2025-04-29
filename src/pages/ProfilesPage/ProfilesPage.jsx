@@ -63,6 +63,12 @@ function ProfilesPage(){
     <section>
       <Container fluid="lg" className="bg-secondary my-3 py-3">
         <ProfilesFilter 
+          selectedGender={selectedGender}
+          selectedSmoker={selectedSmoker}
+          selectedPet={selectedPet}
+          selectedMarital={selectedMarital}
+          selectedZodiac={selectedZodiac}
+          selectedInterests={selectedInterests}
           setSelectedCity={setSelectedCity}
           setSelectedGender={setSelectedGender}
           setSelectedSmoker={setSelectedSmoker}

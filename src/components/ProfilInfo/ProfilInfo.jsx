@@ -1,3 +1,5 @@
+import "./ProfilInfo.scss"
+
 import Container from "react-bootstrap/Container";
 
 function ProfilInfo({children, profil}) {
@@ -7,10 +9,7 @@ function ProfilInfo({children, profil}) {
   }
 
   return (
-    <Container
-      className="bg-warning text-white my-3 py-4 rounded flex-grow-1"
-      style={{ height: "100%" }}
-    >
+    <Container className="bg-warning text-white my-3 py-4 rounded flex-grow-1 size-format">
       <article>
         <h2 className="mb-5">Informations générales</h2>
         <div>

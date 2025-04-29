@@ -24,11 +24,10 @@ function ProfilCard({
 
   return (
     <Container fluid="lg" className='p-4 text-center'>
-			<a href="#" style={{ textDecoration: "none" }}>
-				<Card onClick={handleClick} >
+				<Card className="clickable-card" aria-label={`Voir le profil de ${profil.firstname}`} onClick={handleClick} >
 					<Card.Title className='py-3 h1'>{profil.firstname}</Card.Title>
 					<div className="relative">
-          <Card.Img src={defaultImage} />
+          <Card.Img src={defaultImage} alt={`Photo de ${profil.firstname}`}/>
           <span className="bg-primary text-white rounded p-1 absolute" >
           	{profil.age} ans
           </span>
@@ -40,7 +39,6 @@ function ProfilCard({
 						</Card.Text>
 					</Card.Body>
 				</Card>
-			</a>
 		</Container>
   );
 };

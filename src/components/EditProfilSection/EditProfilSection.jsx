@@ -1,3 +1,5 @@
+import "./EditProfilSection.scss"
+
 import { useState } from "react";
 
 import { editMyAccount } from "../../api/api.js";
@@ -21,18 +23,15 @@ function EditProfilSection({handleBackToMain}){
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (name === "picture" && files.length > 0) {
-      // Stocke le fichier sélectionné ; à adapter si vous devez le convertir en base64
       setFormData((prev) => ({ ...prev, picture: files[0] }));
     } else {
       setFormData((prev) => ({ ...prev, [name]: value }));
     }
   };
 
-  // Gestion de la soumission du formulaire.
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Construire l'objet à envoyer en filtrant les champs non renseignés.
     const dataToUpdate = Object.entries(formData).reduce((acc, [key, value]) => {
       if (value !== "" && value !== null && value !== undefined) {
         acc[key] = value;
@@ -56,7 +55,7 @@ function EditProfilSection({handleBackToMain}){
 
   
   return (
-    <Container className="bg-white rounded text-center p-4 my-3" style={{ maxWidth: "800px" }}>
+    <Container className="bg-white rounded text-center p-4 my-3 size-format" >
       <h1 className="border-bottom mb-3 pb-3">Modification Identité</h1>
       <Form onSubmit={handleSubmit} encType="multipart/form-data">
         <Form.Group className="my-5">

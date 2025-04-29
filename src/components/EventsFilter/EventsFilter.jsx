@@ -8,7 +8,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 
-function EventsFilter({ setSelectedCity, setSelectedLabels }) {
+function EventsFilter({ setSelectedCity, setSelectedLabels, selectedLabels }) {
   const [show, setShow] = useState(false);
 
   const handleToggleClick = () => {
@@ -26,6 +26,11 @@ function EventsFilter({ setSelectedCity, setSelectedLabels }) {
     );
   };
 
+  const resetFilters = () =>{
+    setSelectedLabels([]);
+    setSelectedCity(null);
+  }
+
   return (
     <nav className="bg-light p-2 rounded">
       <Row className="align-items-center">
@@ -42,37 +47,40 @@ function EventsFilter({ setSelectedCity, setSelectedLabels }) {
         </Col>
         <Col xs={4} md={2} className="d-flex justify-content-end">
           <Dropdown show={show}  autoClose="outside" onToggle={(isOpen, event, metadata) => setShow(isOpen)} >
-            <Dropdown.Toggle size="lg" variant="dark" id="dropdown-checkbox" onClick={handleToggleClick} >
+            <Dropdown.Toggle size="lg" variant="dark" id="dropdown-checkbox" onClick={handleToggleClick} aria-label="filter les événements" >
               Filtre
             </Dropdown.Toggle>
             <Dropdown.Menu>
               <div className="d-flex flex-row-reverse px-3">
-                <CloseButton onClick={handleCloseDropDown}/>
+                <CloseButton aria-label="Fermer le menu de filtres" onClick={handleCloseDropDown}/>
               </div>
               <Dropdown.Item as="div">
-                <Form.Check id="nature" type="checkbox" label="Nature" name="labels" onChange={() => handlelabelSelection("Nature")} />
+                <Form.Check id="nature" type="checkbox" label="Nature" name="labels" onChange={() => handlelabelSelection("Nature")} checked={selectedLabels.includes("Nature")}/>
               </Dropdown.Item>
               <Dropdown.Item as="div">
-                <Form.Check id="sport" type="checkbox" label="Sports/bien-être" name="labels" onChange={() => handlelabelSelection("Sports/bien-être")} />
+                <Form.Check id="sport" type="checkbox" label="Sports/bien-être" name="labels" onChange={() => handlelabelSelection("Sports/bien-être")} checked={selectedLabels.includes("Sports/bien-être")}/>
               </Dropdown.Item>
               <Dropdown.Item as="div">
-                <Form.Check id="culture" type="checkbox" label="Culturel" name="labels" onChange={() => handlelabelSelection("Culturel")} />
+                <Form.Check id="culture" type="checkbox" label="Culturel" name="labels" onChange={() => handlelabelSelection("Culturel")} checked={selectedLabels.includes("Culturel")}/>
               </Dropdown.Item>
               <Dropdown.Item as="div">
-                <Form.Check id="soiree-a-theme" type="checkbox" label="Soirée à thème" name="labels" onChange={() => handlelabelSelection("Soirée à thème")} />
+                <Form.Check id="soiree-a-theme" type="checkbox" label="Soirée à thème" name="labels" onChange={() => handlelabelSelection("Soirée à thème")} checked={selectedLabels.includes("Soirée à thème")}/>
               </Dropdown.Item>
               <Dropdown.Item as="div">
-                <Form.Check id="artistique" type="checkbox" label="Artistique" name="labels" onChange={() => handlelabelSelection("Artistique")} />
+                <Form.Check id="artistique" type="checkbox" label="Artistique" name="labels" onChange={() => handlelabelSelection("Artistique")} checked={selectedLabels.includes("Artistique")}/>
               </Dropdown.Item>
               <Dropdown.Item as="div">
-                <Form.Check id="jeux-de-societe" type="checkbox" label="Jeux de société" name="labels" onChange={() => handlelabelSelection("Jeux de société")} />
+                <Form.Check id="jeux-de-societe" type="checkbox" label="Jeux de société" name="labels" onChange={() => handlelabelSelection("Jeux de société")} checked={selectedLabels.includes("Jeux de société")}/>
               </Dropdown.Item>
+              <div className="text-center">
+              <Button variant="dark" type="button" onClick={resetFilters}>Réintialiser</Button>
+            </div>
             </Dropdown.Menu>
           </Dropdown>
         </Col>
       </Row>
     </nav>
   );
-}
+};
 
 export default EventsFilter;

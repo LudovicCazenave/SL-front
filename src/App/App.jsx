@@ -5,6 +5,7 @@ import { Routes, Route, Navigate } from 'react-router';
 
 import { AuthContext } from "../contexts/AuthContext.jsx";
 
+
 import ProtectedRoute from '../routes/ProtectedRoute.jsx';
 import Header from '../components/Header/Header.jsx';
 import Footer from '../components/Footer/Footer.jsx';
@@ -22,6 +23,7 @@ import MessagesPage from '../pages/MessagesPage/MessagesPage.jsx';
 import LegalInfoPage from '../pages/LegalInfoPage/LegalInfoPage.jsx';
 import SiteMapPage from '../pages/SiteMapPage/SiteMapPage.jsx';
 import DataProtectionPage from '../pages/DataProtectionPage/DataProtectionPage.jsx';
+import CookieConsent from '../components/CookieConsent/CookieConsent.jsx';
 
 function App() {
 
@@ -45,6 +47,7 @@ function App() {
         </header>
 
         <main>
+        <CookieConsent />
           <Routes>
             <Route path="/" element={<Navigate to="/accueil"/>} />
             <Route path="/accueil" element={
