@@ -1,10 +1,13 @@
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
+// FormSlide6 component collects the user's musical preferences.
+// The user can submit their favorite music style or skip the slide.
 function FormSlide6({ nextSlide, updateFormData }) {
-  
+  // Handle the form submission by extracting the music style input,
+  // trimming any extra whitespace, updating the parent form data, and moving to the next slide.
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -16,6 +19,7 @@ function FormSlide6({ nextSlide, updateFormData }) {
     nextSlide();
   };
 
+  // Allow the user to skip entering a music style
   const handleSkip = () => {
     nextSlide();
   };

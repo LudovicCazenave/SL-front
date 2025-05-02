@@ -4,33 +4,35 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 function FormSlide9({ nextSlide, updateFormData }) {
-  
-  const handleSubmit = (e) => {
-    e.preventDefault();
 
-    
+  // Handle the form submission event
+  const handleSubmit = (e) => {
+    e.preventDefault(); 
+
+    // Create an object containing the trimmed description input value
     const formData = {
       description: e.target.description.value.trim(),
     };
 
-    
-    updateFormData(formData);
-    nextSlide();
+    updateFormData(formData); // Update the parent component's form data
+    nextSlide(); // Advance to the next slide
   };
 
+  // Handle skipping this slide without input
   const handleSkip = () => {
-    nextSlide();
+    nextSlide(); 
   };
 
   return (
     <Form key="form-slide-9" className="text-center" onSubmit={handleSubmit}>
       <Form.Group>
+        
         <Form.Label htmlFor="description">Présentez-vous en quelques mots</Form.Label>
         <Form.Control
-          as="textarea"
+          as="textarea" 
           id="description"
           name="description"
-          placeholder="Dites-nous en plus sur vous…"
+          placeholder="Dites-nous en plus sur vous…" 
         />
       </Form.Group>
       <Row className="d-flex justify-content-center gap-2 my-3">
@@ -38,9 +40,7 @@ function FormSlide9({ nextSlide, updateFormData }) {
           <Button size="lg" type="submit">Valider</Button>
         </Col>
         <Col xs="auto">
-          <Button size="lg" variant="dark" type="button" onClick={handleSkip}>
-            Passer
-          </Button>
+          <Button size="lg" variant="dark" type="button" onClick={handleSkip}>Passer</Button>
         </Col>
       </Row>
     </Form>

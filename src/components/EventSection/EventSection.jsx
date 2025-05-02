@@ -1,31 +1,61 @@
-import "./EventSection.scss";
+import "./EventSection.scss"; // Import component-specific styles
 
+// Import helper functions to format the event date and time
 import { formatDate, formatHour } from "../../utils/format.js";
 
+// Import React Bootstrap components for layout and imagery
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 
-function EventSection({ children, event }){
+// Component to display key details about an event
+function EventSection({ children, event }) {
+  // If no event data is provided, display a fallback message
+  if (!event) {
+    return (
+      <Container>
+        <p>Données de l'évènement indisponibles.</p>
+      </Container>
+    );
+  }
 
-  if(!event) {
-    return <Container><p>Données de l'évènement indisponibles.</p></Container>;
-  };
-
-  return(
+  return (
     <Container className="text-center bg-white my-3 py-4 rounded">
       <article>
-        <Image src="/src/assets/img/diverse-img/games.jpg" alt="image de l'événement"  width="400" height="250" className="rounded img"/>
+        {/* Display a placeholder event image */}
+        <Image
+          src="/src/assets/img/diverse-img/games.jpg"
+          alt="Image de l'événement"
+          width="400"
+          height="250"
+          className="rounded img"
+        />
         <div className="my-4">
-          <p><strong>Date :</strong> <span>{formatDate(event.date)}</span></p>
-          <p><strong>Horaire :</strong> <span>{formatHour(event.time)}h</span></p>
-          <p><strong>Thème :</strong> <span>{event.label.name}</span></p>
-          <p><strong>Lieu :</strong> <span>{event.city}</span></p>
-          <p><strong>Nombre de participants :</strong> <span>{event.users.length}</span></p>
+          {/* Display the formatted event date */}
+          <p>
+            <strong>Date :</strong> <span>{formatDate(event.date)}</span>
+          </p>
+          {/* Display the formatted event time with a trailing 'h' */}
+          <p>
+            <strong>Horaire :</strong> <span>{formatHour(event.time)}h</span>
+          </p>
+          {/* Display the event theme from the event label */}
+          <p>
+            <strong>Thème :</strong> <span>{event.label.name}</span>
+          </p>
+          {/* Display the event location (city) */}
+          <p>
+            <strong>Lieu :</strong> <span>{event.city}</span>
+          </p>
+          {/* Display the number of participants in the event */}
+          <p>
+            <strong>Nombre de participants :</strong> <span>{event.users.length}</span>
+          </p>
         </div>
+        {/* Render any additional content passed as children */}
         {children}
       </article>
     </Container>
   );
-};
+}
 
 export default EventSection;

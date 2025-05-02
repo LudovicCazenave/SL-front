@@ -1,44 +1,55 @@
-import "./EventCard.scss"
+import "./EventCard.scss"; // Import component-specific styles
 
-import { useNavigate } from 'react-router';
+import { useNavigate } from "react-router"; // Hook to navigate between routes
 
-import Card from 'react-bootstrap/Card';
-import Container  from "react-bootstrap/Container";
+import Card from "react-bootstrap/Card"; // Bootstrap Card component for layout
+import Container from "react-bootstrap/Container"; // Bootstrap Container for responsive layout
 
-function EventCard({ 
-	event={
-		city : "Paris",
-		description : "blabla",
-		slug: "evenement-paris",
-		label :{name: "label"}
-	} 
+// EventCard component receives an event object as a prop with default values.
+function EventCard({
+  event = {
+    city: "Paris",
+    description: "blabla",
+    slug: "evenement-paris",
+    label: { name: "label" },
+  },
 }) {
+  const navigate = useNavigate();
 
-	const navigate = useNavigate();
-
-	const handleClick = () => {
+  // Handle click event to navigate to the event detail page using the event.slug
+  const handleClick = () => {
     navigate(`/evenements/${event.slug}`);
   };
 
-	return (
-		<Container fluid="lg" className='p-4 text-center' >
-				<Card className="clickable-card" aria-label={`Voir la fiche  de l'événement ${event.description}`} onClick={handleClick} >
-					<Card.Title className='py-3 h1'>{event.city}</Card.Title>
-					<div className="relative">
-					<Card.Img src='/src/assets/img/diverse-img/games.jpg' alt="Image de l'événement"/>
-					<span className='bg-primary text-white rounded p-1  absolute'>
-						{event.label.name}
-					</span>
-					</div>
-					
-					<Card.Body>
-						<Card.Text>
-							{event.description}
-						</Card.Text>
-					</Card.Body>
-				</Card>	
-		</Container>
-	);
-};
+  return (
+    // Container with padding and centered text
+    <Container fluid="lg" className="p-4 text-center">
+      {/* Clickable card with an aria-label for accessibility */}
+      <Card
+        className="clickable-card"
+        aria-label={`Voir la fiche de l'événement ${event.description}`}
+        onClick={handleClick}
+      >
+        {/* Card title showing the city of the event */}
+        <Card.Title className="py-3 h1">{event.city}</Card.Title>
+        <div className="relative">
+          {/* Event image with a placeholder picture */}
+          <Card.Img
+            src="/src/assets/img/diverse-img/games.jpg"
+            alt="Image de l'événement"
+          />
+          {/* Label displayed on top of the image */}
+          <span className="bg-primary text-white rounded p-1 absolute">
+            {event.label.name}
+          </span>
+        </div>
+        <Card.Body>
+          {/* Event description */}
+          <Card.Text>{event.description}</Card.Text>
+        </Card.Body>
+      </Card>
+    </Container>
+  );
+}
 
 export default EventCard;

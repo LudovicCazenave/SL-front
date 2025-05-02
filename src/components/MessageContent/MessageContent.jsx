@@ -1,4 +1,4 @@
-import "./MessageContent.scss"
+import "./MessageContent.scss";
 
 import { useContext, useState } from "react";
 
@@ -11,42 +11,52 @@ import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 import Form from "react-bootstrap/Form";
 
-
-
 function MessageContent({ messages, setMessages, receiver }) {
-
+  // State to hold the content of the new message being typed
   const [newMessage, setNewMessage] = useState("");
-  const { authenticated: currentUser } = useContext(AuthContext)
+  // Retrieve the current authenticated user from the AuthContext
+  const { authenticated: currentUser } = useContext(AuthContext);
 
+  // Function to handle sending a new message
   const handleSendMessage = async (e) => {
     e.preventDefault();
-    if(!newMessage.trim()){
-      return ;
+
+    // If the message input is empty or contains only whitespace, do nothing
+    if (!newMessage.trim()) {
+      return;
     }
 
+    // Construct the message data object with the content and receiver's id
     const messageData = {
       content: newMessage,
-      receiver_id: receiver.id
+      receiver_id: receiver.id,
     };
 
+    // Send the message using the sendMessage API call
     const response = await sendMessage(messageData);
 
-    if(response){
+    // On successful message send, trigger the success notification and clear the input
+    if (response) {
       successSendMessage();
       setNewMessage("");
     }
+
+    // Retrieve the updated list of messages after sending
     const updateMessages = await getAllMessages();
 
-    if(updateMessages){
+    // If updated messages are received, update the state in the parent component
+    if (updateMessages) {
       setMessages(updateMessages);
     }
-  }
+  };
 
   return (
     <>
+      {/* Header container for the messaging section */}
       <Container fluid="lg" className="bg-primary mt-lg-3 py-1 rounded-top">
         <h2 className="h1 text-white text-center">Messagerie</h2>
       </Container>
+      {/* Display conversation header based on whether a receiver is selected */}
       {receiver ? (
         <h3 className="text-white text-center">
           Conversation avec {receiver.firstname}
@@ -56,10 +66,10 @@ function MessageContent({ messages, setMessages, receiver }) {
           Veuillez sélectionner un contact pour afficher la conversation
         </h3>
       )}
-
+      {/* Container displaying the sorted list of messages */}
       <Container fluid="lg" className="bg-white py-3 rounded-bottom">
         {messages
-          .sort((a, b) => new Date(a.created_at) - new Date(b.created_at)) 
+          .sort((a, b) => new Date(a.created_at) - new Date(b.created_at))
           .map((message) => (
             <div
               key={message.id}
@@ -77,14 +87,22 @@ function MessageContent({ messages, setMessages, receiver }) {
             </div>
           ))}
       </Container>
+      {/* Container for the message input form */}
       <Container fluid="lg" className="py-3">
-        <Form  onSubmit={handleSendMessage}>
+        <Form onSubmit={handleSendMessage}>
           <InputGroup>
-            <Form.Control type="text" size="lg" placeholder="Votre message..." value={newMessage} onChange={(e) => setNewMessage(e.target.value)}/>
-            <Button variant="primary" type="submit">Envoyer</Button>
+            <Form.Control
+              type="text"
+              size="lg"
+              placeholder="Votre message..."
+              value={newMessage}
+              onChange={(e) => setNewMessage(e.target.value)}
+            />
+            <Button variant="primary" type="submit">
+              Envoyer
+            </Button>
           </InputGroup>
         </Form>
-        
       </Container>
     </>
   );

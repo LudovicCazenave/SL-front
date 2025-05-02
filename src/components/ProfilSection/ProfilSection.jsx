@@ -3,30 +3,45 @@ import "./ProfilSection.scss";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 
-function ProfilSection({children, profil}){
-  console.log(profil)
+function ProfilSection({ children, profil }) {
+  console.log(profil);
+  
+  // Check if profile data is available; if not, return an error message
   if (!profil) {
     return <Container><p>Données du profil indisponibles.</p></Container>;
-  };
-
-  if(profil.picture === "http://localhost:3000/null"){
-    profil.picture = ""
   }
 
-  const defaultImage = profil.gender === "Femme" ? "/src/assets/img/diverse-img/profils/Celine.png" : "/src/assets/img/diverse-img/profils/Jacky.jpg";
+  // If the profile picture URL is the default invalid value, reset it to an empty string
+  if (profil.picture === "http://localhost:3000/null") {
+    profil.picture = "";
+  }
 
-  return(
+  // Choose the default image based on the profile's gender
+  const defaultImage =
+    profil.gender === "Femme"
+      ? "/src/assets/img/diverse-img/profils/Celine.png"
+      : "/src/assets/img/diverse-img/profils/Jacky.jpg";
+
+  return (
     <Container className="text-center bg-white my-3 py-4 rounded">
       <article>
-        <Image src={profil.picture || defaultImage} alt={profil.firstname} roundedCircle width="250" height="250" className="border border-3 border-primary img"/>
+        {/* Render the profile image; falls back to the default image if none provided */}
+        <Image
+          src={profil.picture || defaultImage}
+          alt={profil.firstname}
+          roundedCircle
+          width="250"
+          height="250"
+          className="border border-3 border-primary img"
+        />
         <div className="my-4">
           <p><strong>Prénom :</strong> <span>{profil.firstname}</span></p>
           <p><strong>Age :</strong> <span>{profil.age} ans</span></p>
           <p><strong>Ville :</strong> <span>{profil.city}</span></p>
         </div>
+        {/* Render any additional content passed as children */}
         {children}
       </article>
-      
     </Container>
   );
 };

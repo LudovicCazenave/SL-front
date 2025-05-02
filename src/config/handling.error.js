@@ -3,8 +3,8 @@ import withReactContent from "sweetalert2-react-content";
 
 const MySwal = withReactContent(Swal);
 
+// Display an error alert when a server connection error occurs.
 export function errorServer() {
-
   MySwal.fire({
     icon: "error",
     title: "Erreur",
@@ -12,97 +12,96 @@ export function errorServer() {
   });
 };
 
+// Display a custom error alert using the provided message.
 export function showErrorMessage(message) {
-
   MySwal.fire({
-    icon: 'error', 
+    icon: 'error',
     title: 'Erreur',
-    text: message, 
+    text: message,
   });
 };
 
+// Display a warning alert indicating that the user does not meet the minimum age requirement.
 export function checkMinimumAge() { 
-  
   MySwal.fire({
     icon: 'warning',
     title: 'Âge insuffisant',
     text: 'Vous devez avoir au moins soixante ans pour vous inscrire.',
     confirmButtonText: 'Compris'
-  }); 
+  });
 };
 
+// Validate the signup form based on the provided step (count) and data.
+// Returns an error message if validation fails or null if the data is valid.
 export function validateFormSignup(data, count) {
-
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const lettersPattern = /^[A-Za-zÀ-ÿ\s]+$/;
   
   switch (count) {
-  case 1:
-  
-    if (!data.height) {
-      return "Veuillez renseigner votre taille.";
-    }
-    const height = Number(data.height);
-    if (!Number.isInteger(height)) {
-      return "Veuillez entrer une taille valide.";
-    }
-    break;
-  
-  case 6:
-  
-    if (!lettersPattern.test(data.music)) {
-      return "Veuillez entrer uniquement des lettres pour le style de musique.";
-    }
-    break;
-  
-  case 10:
-    if (!data.firstname) {
-      return "Veuillez renseigner votre prénom.";
-    }
-    if (!lettersPattern.test(data.firstname)) {
-      return "Le prénom ne doit contenir que des lettres.";
-    }
-  
-    
-    if (!data.email) {
-      return "L'email est requis.";
-    }
-    if (!emailPattern.test(data.email)) {
-      return "Veuillez entrer une adresse email valide.";
-    }
-  
-    const pw = data.password || '';
-    const pwErrors = [];
-    if (pw.length < 8) pwErrors.push("8 caractères minimum.");
-    if (pw.length > 100) pwErrors.push("100 caractères maximum.");
-    if (!/[A-Z]/.test(pw)) pwErrors.push("Au moins une lettre majuscule.");
-    if (!/[a-z]/.test(pw)) pwErrors.push("Au moins une lettre minuscule.");
-    if (!/\d/.test(pw)) pwErrors.push("Au moins un chiffre.");
-    if (/\s/.test(pw)) pwErrors.push("Pas d'espaces.");
-    if (!/[!@#$%^&*(),.?":{}|<>]/.test(pw)) {
-      pwErrors.push("Au moins un caractère spécial (ex: !@#$%).");
-    }
-    if (pwErrors.length > 0) {
-      return "Mot de passe invalide: " + pwErrors.join(' ');
-    }
-  
-    
-    if (!data.confirmPassword) {
-      return "Veuillez confirmer votre mot de passe.";
-    }
-    if (pw !== data.confirmPassword) {
-      return "Les mots de passe ne correspondent pas.";
-    }
-    break;
-  default:
-    return null;
+    case 1:
+      if (!data.height) {
+        return "Veuillez renseigner votre taille.";
+      }
+      const height = Number(data.height);
+      if (!Number.isInteger(height)) {
+        return "Veuillez entrer une taille valide.";
+      }
+      break;
+      
+    case 6:
+      if (!lettersPattern.test(data.music)) {
+        return "Veuillez entrer uniquement des lettres pour le style de musique.";
+      }
+      break;
+      
+    case 10:
+      if (!data.firstname) {
+        return "Veuillez renseigner votre prénom.";
+      }
+      if (!lettersPattern.test(data.firstname)) {
+        return "Le prénom ne doit contenir que des lettres.";
+      }
+      
+      if (!data.email) {
+        return "L'email est requis.";
+      }
+      if (!emailPattern.test(data.email)) {
+        return "Veuillez entrer une adresse email valide.";
+      }
+      
+      // Validate password requirements.
+      const pw = data.password || '';
+      const pwErrors = [];
+      if (pw.length < 8) pwErrors.push("8 caractères minimum.");
+      if (pw.length > 100) pwErrors.push("100 caractères maximum.");
+      if (!/[A-Z]/.test(pw)) pwErrors.push("Au moins une lettre majuscule.");
+      if (!/[a-z]/.test(pw)) pwErrors.push("Au moins une lettre minuscule.");
+      if (!/\d/.test(pw)) pwErrors.push("Au moins un chiffre.");
+      if (/\s/.test(pw)) pwErrors.push("Pas d'espaces.");
+      if (!/[!@#$%^&*(),.?":{}|<>]/.test(pw)) {
+        pwErrors.push("Au moins un caractère spécial (ex: !@#$%).");
+      }
+      if (pwErrors.length > 0) {
+        return "Mot de passe invalide: " + pwErrors.join(' ');
+      }
+      
+      if (!data.confirmPassword) {
+        return "Veuillez confirmer votre mot de passe.";
+      }
+      if (pw !== data.confirmPassword) {
+        return "Les mots de passe ne correspondent pas.";
+      }
+      break;
+    default:
+      return null;
   }
   
   return null;
 };
 
+// Validate the signin form data by checking the email format and password requirements.
+// Returns true if both email and password are valid, false otherwise.
 export function validateFormSignin(data) {
-  
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const isEmailValid = data.email && emailPattern.test(data.email);
     
@@ -111,7 +110,7 @@ export function validateFormSignin(data) {
       password.length >= 8 && 
       password.length <= 100 && 
       /[A-Z]/.test(password) &&
-      /[a-z]/.test(password) &&
+      /[a-z]/.test(password) && 
       /\d/.test(password) &&
       /[!@#$%^&*(),.?":{}|<>]/.test(password) &&
       !/\s/.test(password);
@@ -119,6 +118,8 @@ export function validateFormSignin(data) {
   return isEmailValid && isPasswordValid;
 };
 
+// Show a confirmation dialog asking if the user really wants to delete their account.
+// Returns the result of the confirmation prompt.
 export async function showConfirmationDialog() {
   return await MySwal.fire({
     title: 'Attention',
@@ -131,6 +132,7 @@ export async function showConfirmationDialog() {
   });
 };
 
+// Display a success alert after the account has been successfully deleted, then navigate to the home page.
 export async function showSuccessMessage(navigate) {
   await MySwal.fire({
       icon: 'success',
@@ -140,7 +142,8 @@ export async function showSuccessMessage(navigate) {
   navigate('/accueil', { replace: true });
 };
 
-export function showCancelAction (){
+// Display an informational alert to indicate that the account deletion was canceled.
+export function showCancelAction() {
   MySwal.fire({
     icon: 'info',
     title: 'Annulé',
@@ -150,6 +153,7 @@ export function showCancelAction (){
   });
 };
 
+// Display a success alert after a successful signup and inform the user about redirection to the login page.
 export function successSignup() { 
   MySwal.fire({
     title: "Parfait!",
@@ -159,6 +163,7 @@ export function successSignup() {
   });
 };
 
+// Display a success alert confirming that the profile has been successfully updated.
 export function successProfileUpdate() {
   MySwal.fire({
     title: "Mise à jour réussie !",
@@ -168,6 +173,7 @@ export function successProfileUpdate() {
   });
 };
 
+// Display a success alert indicating that the message has been sent successfully.
 export function successSendMessage() {
   MySwal.fire({
     title: "Message Envoyé !",
@@ -177,6 +183,7 @@ export function successSendMessage() {
   });
 };
 
+// Display a success alert confirming that the registration for the event was successful.
 export function successRegister() {
   MySwal.fire({
     title: "Inscription a l'événement !",
