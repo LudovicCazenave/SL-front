@@ -15,18 +15,24 @@ function ProfilSection({ children, profil }) {
     profil.picture = "";
   }
 
+  // Access the API URL from .env
+  const apiUrl = process.env.API_URL;
+
   // Choose the default image based on the profile's gender
   const defaultImage =
     profil.gender === "Femme"
       ? "/assets/img/diverse-img/profils/celine.png"
       : "/assets/img/diverse-img/profils/jacky.jpg";
 
+  // Construct the full profile image URL if it exists
+  const imageUrl = profil.picture ? `${apiUrl}/public/uploads/${profil.picture}` : defaultImage;
+
   return (
     <Container className="text-center bg-white my-3 py-4 rounded">
       <article>
         {/* Render the profile image; falls back to the default image if none provided */}
         <Image
-          src={profil.picture || defaultImage}
+          src={imageUrl}
           alt={profil.firstname}
           roundedCircle
           width="250"
