@@ -22,8 +22,8 @@ function ProfilCard({
   // Choose the default image based on the profile's gender
   const defaultImage =
     profil.gender === "Femme"
-      ? "/src/assets/img/diverse-img/profils/celine.png"
-      : "/src/assets/img/diverse-img/profils/jacky.jpg";
+      ? "/assets/img/diverse-img/profils/celine.png"
+      : "/assets/img/diverse-img/profils/jacky.jpg";
 
   return (
     <Container fluid="lg" className="p-4 text-center">
