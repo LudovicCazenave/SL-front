@@ -26,7 +26,7 @@ function ProfilSection({ children, profil }) {
 
   // Construct the full profile image URL if it exists
   const imageUrl = profil.picture 
-    ? `${apiUrl}/public/${profil.picture}`
+    ? `${apiUrl}${profil.picture}`
     : defaultImage;
 
   return (
