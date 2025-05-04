@@ -25,10 +25,10 @@ function ProfilSection({ children, profil }) {
       : "/assets/img/diverse-img/profils/jacky.jpg";
 
   // Construct the full profile image URL if it exists
-  const imageUrl = profil.picture 
-    ? `${apiUrl}${profil.picture}`
-    : defaultImage;
-
+  let imageUrl = profil.picture 
+  if (imageUrl && imageUrl.startsWith("http://localhost:3000")) {
+    imageUrl = imageUrl.replace("http://localhost", "https://seniorlove.onrender.com");
+  }
   return (
     <Container className="text-center bg-white my-3 py-4 rounded">
       <article>
