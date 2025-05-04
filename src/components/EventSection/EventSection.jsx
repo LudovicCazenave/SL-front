@@ -21,7 +21,7 @@ function EventSection({ children, event }) {
       <article>
         {/* Display a placeholder event image */}
         <Image
-          src="/src/assets/img/diverse-img/games.jpg"
+          src="/assets/img/diverse-img/games.jpg"
           alt="Image de l'événement"
           width="400"
           height="250"

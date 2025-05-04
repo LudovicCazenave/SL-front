@@ -8,7 +8,7 @@ function SignUpImage({ children, isLargeScreen, showFormOnSmallScreen, onButtonC
     <>
       {/* Display the main background image */}
       <Image
-        src="/src/assets/img/diverse-img/hands.jpg"
+        src="/assets/img/diverse-img/hands.jpg"
         alt='Image introduction SeniorLove'
         fluid
         className="mx-auto"
@@ -29,7 +29,7 @@ function SignUpImage({ children, isLargeScreen, showFormOnSmallScreen, onButtonC
         )}
         {/* Display the logo image */}
         <img
-          src="/src/assets/img/logo/heart-2-removebg.png"
+          src="/assets/img/logo/heart-2-removebg.png"
           width="80"
           height="80"
           alt="Logo"

@@ -35,7 +35,7 @@ function EventCard({
         <div className="relative">
           {/* Event image with a placeholder picture */}
           <Card.Img
-            src="/src/assets/img/diverse-img/games.jpg"
+            src="/assets/img/diverse-img/games.jpg"
             alt="Image de l'événement"
           />
           {/* Label displayed on top of the image */}

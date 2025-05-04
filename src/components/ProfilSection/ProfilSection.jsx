@@ -18,8 +18,8 @@ function ProfilSection({ children, profil }) {
   // Choose the default image based on the profile's gender
   const defaultImage =
     profil.gender === "Femme"
-      ? "/src/assets/img/diverse-img/profils/Celine.png"
-      : "/src/assets/img/diverse-img/profils/Jacky.jpg";
+      ? "/assets/img/diverse-img/profils/Celine.png"
+      : "/assets/img/diverse-img/profils/Jacky.jpg";
 
   return (
     <Container className="text-center bg-white my-3 py-4 rounded">

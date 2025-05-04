@@ -35,7 +35,7 @@ function Header() {
         <Navbar.Brand as={NavLink} to={authenticated ? "/tableau-de-bord" : "/accueil"}>
           <img
             alt=""
-            src="/src/assets/img/logo/heart-2-removebg.png"
+            src="/assets/img/logo/heart-2-removebg.png"
             width="60"
             height="60"
             className="d-inline-block align-top"
