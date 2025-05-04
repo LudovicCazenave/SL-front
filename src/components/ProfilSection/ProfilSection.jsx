@@ -25,7 +25,9 @@ function ProfilSection({ children, profil }) {
       : "/assets/img/diverse-img/profils/jacky.jpg";
 
   // Construct the full profile image URL if it exists
-  const imageUrl = profil.picture ? `${apiUrl}/public/uploads/${profil.picture}` : defaultImage;
+  const imageUrl = profil.picture && profil.picture.startsWith("http")
+    ? profil.picture
+    : `${apiUrl}/public/uploads/${profil.picture || ''}`;
 
   return (
     <Container className="text-center bg-white my-3 py-4 rounded">
