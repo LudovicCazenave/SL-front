@@ -27,8 +27,6 @@ function SignUpWizzard({ formData, updateFormData }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const navigate = useNavigate();
 
-  console.log("FormData actuel :", formData);
-
   // Moves to the next slide. Optionally enforces validation by passing a validationCount.
   const handleNextSlide = (validationCount = null) => {
     if (validationCount !== null) {
@@ -51,7 +49,6 @@ function SignUpWizzard({ formData, updateFormData }) {
   // The mergedData is validated (using step 10), then converted into a FormData instance if needed.
   // On a successful signup, a success alert is displayed and the user is redirected to the /connexion page.
   const handleSubmitForm = async (mergedData) => {
-    console.log("mergedData", mergedData);
     const errorMessage = validateFormSignup(mergedData, 10);
     if (errorMessage) {
       showErrorMessage(errorMessage);
@@ -70,7 +67,6 @@ function SignUpWizzard({ formData, updateFormData }) {
       }
     });
 
-    console.log("Submitting to API", mergedData);
     const createdUser = await signUp(mergedData);
 
     if (createdUser) {

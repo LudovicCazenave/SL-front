@@ -1,7 +1,7 @@
-import "./EventLocation.scss"; // Import component styles
+import "./EventLocation.scss"; 
 
-import { useCallback, useEffect, useRef } from "react"; // Import necessary React hooks
-import Container from "react-bootstrap/Container"; // Import Bootstrap Container for layout
+import { useCallback, useEffect, useRef } from "react"; 
+import Container from "react-bootstrap/Container";
 
 function EventLocation({ children, event }) {
   // Reference for the map container div

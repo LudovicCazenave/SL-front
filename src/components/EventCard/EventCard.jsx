@@ -1,9 +1,9 @@
-import "./EventCard.scss"; // Import component-specific styles
+import "./EventCard.scss"; 
 
-import { useNavigate } from "react-router"; // Hook to navigate between routes
+import { useNavigate } from "react-router"; 
 
-import Card from "react-bootstrap/Card"; // Bootstrap Card component for layout
-import Container from "react-bootstrap/Container"; // Bootstrap Container for responsive layout
+import Card from "react-bootstrap/Card"; 
+import Container from "react-bootstrap/Container"; 
 
 // EventCard component receives an event object as a prop with default values.
 function EventCard({

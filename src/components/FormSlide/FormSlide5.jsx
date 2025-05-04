@@ -23,8 +23,8 @@ function FormSlide5({ nextSlide, updateFormData }) {
     <Form key="form-slide-5" className="text-center" onSubmit={handleSubmit}>
       <Row>
         <Col>
-          <Form.Group>
-            <Form.Label htmlFor="pet">
+          <Form.Group as="fieldset">
+            <Form.Label as="legend">
               Avez-vous des animaux de compagnie ? *
             </Form.Label>
             <Form.Check

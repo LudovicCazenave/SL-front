@@ -28,8 +28,8 @@ function FormSlide4({ nextSlide, updateFormData }) {
     <Form key="form-slide-4" className="text-center" onSubmit={handleSubmit}>
       <Row>
         <Col>
-          <Form.Group>
-            <Form.Label htmlFor="smoker">Est-ce que vous fumez ?</Form.Label>
+          <Form.Group as="fieldset">
+            <Form.Label as="legend">Est-ce que vous fumez ?</Form.Label>
             <Form.Check
               type="radio"
               id="smoke-yes"

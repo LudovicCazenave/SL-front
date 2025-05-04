@@ -1,7 +1,18 @@
+import { useState } from 'react';
+
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import InputGroup from 'react-bootstrap/InputGroup';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+
 
 function FormSlide10({ submitFormData, updateFormData, formData }) {
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   // Handle the form submission event
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -53,27 +64,47 @@ function FormSlide10({ submitFormData, updateFormData, formData }) {
       {/* Input field for password */}
       <Form.Group className="my-3">
         <Form.Label htmlFor="password">Votre mot de passe</Form.Label>
-        <Form.Control
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Entrez un mot de passe sécurisé"
-          required
-          autoComplete="new-password"
-        />
+        <InputGroup>
+          <Form.Control
+            type={showPassword ? "text" : "password"}
+            id="password"
+            name="password"
+            placeholder="Entrez un mot de passe sécurisé"
+            required
+            autoComplete="new-password"
+          />
+          <InputGroup.Text
+            onClick={() => setShowPassword(!showPassword)}
+            style={{ cursor: "pointer" }}
+            title={showPassword ? "Masquer le mot de passe" : "Afficher le mot de passe"}
+          >
+            <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+          </InputGroup.Text>
+        </InputGroup>
       </Form.Group>
+
       {/* Input field for confirming password */}
-      <Form.Group>
-        <Form.Label htmlFor="confirmPassword">Vérification de votre mot de passe </Form.Label>
-        <Form.Control
-          type="password"
-          id="confirmPassword"
-          name="confirmPassword"
-          placeholder="Confirmez votre mot de passe"
-          required
-          autoComplete="new-password"
-        />
+      <Form.Group className="my-3">
+        <Form.Label htmlFor="confirmPassword">Vérification de votre mot de passe</Form.Label>
+        <InputGroup>
+          <Form.Control
+            type={showConfirmPassword ? "text" : "password"}
+            id="confirmPassword"
+            name="confirmPassword"
+            placeholder="Confirmez votre mot de passe"
+            required
+            autoComplete="new-password"
+          />
+          <InputGroup.Text
+            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+            style={{ cursor: "pointer" }}
+            title={showConfirmPassword ? "Masquer le mot de passe" : "Afficher le mot de passe"}
+          >
+            <FontAwesomeIcon icon={showConfirmPassword ? faEyeSlash : faEye} />
+          </InputGroup.Text>
+        </InputGroup>
       </Form.Group>
+
       {/* Button to submit the form */}
       <Button size="lg" type="submit" className="my-3">
         Valider

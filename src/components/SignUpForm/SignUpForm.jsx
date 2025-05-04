@@ -35,17 +35,17 @@ function SignUpForm({ onSignUp, updateFormData }) {
     <Form onSubmit={handleSignUpWizzard}>
       <Row>
         <Col className='p-3'>
-          <Form.Group>
+          <Form.Group as="fieldset">
             {/* Label for the user's gender selection */}
-            <Form.Label htmlFor='gender'> Je suis</Form.Label>
+            <Form.Label as='legend'> Je suis</Form.Label>
             <Form.Check type='radio' id='gender-male' label="Homme" name='gender' value='Homme' required />
             <Form.Check type='radio' id='gender-female' label="Femme" name='gender' value='Femme' required />
           </Form.Group>
         </Col>
         <Col className='p-3'>
-          <Form.Group>
+          <Form.Group as="fieldset">
             {/* Label for the gender the user is interested in */}
-            <Form.Label htmlFor='gender_match'> Je recherche</Form.Label>
+            <Form.Label as='legend'> Je recherche</Form.Label>
             <Form.Check type='radio' id='gender_match-male' label="Homme" name="gender_match" value='Homme' required />
             <Form.Check type='radio' id='gender_match-female' label="Femme" name="gender_match" value='Femme' required />
           </Form.Group>

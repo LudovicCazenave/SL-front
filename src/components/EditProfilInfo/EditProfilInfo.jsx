@@ -1,4 +1,4 @@
-import "./EditProfilInfo.scss"; // Import the component-specific SCSS styling
+import "./EditProfilInfo.scss"; 
 
 import { useState } from "react";
 
@@ -70,8 +70,8 @@ function EditProfilInfo({ handleBackToMain }) {
       {/* Form for editing profile information */}
       <Form onSubmit={handleSubmit}>
         {/* Group for smoker selection */}
-        <Form.Group className="my-5">
-          <Form.Label htmlFor="edit-smoker">Fumeur</Form.Label>
+        <Form.Group as="fieldset" className="my-5">
+          <Form.Label as="legend">Fumeur</Form.Label>
           {/* Radio button for "Yes" */}
           <Form.Check
             type="radio"
@@ -95,8 +95,8 @@ function EditProfilInfo({ handleBackToMain }) {
         </Form.Group>
         
         {/* Group for pet ownership selection */}
-        <Form.Group className="my-5">
-          <Form.Label htmlFor="edit-pet">Animaux de compagnie</Form.Label>
+        <Form.Group as="fieldset" className="my-5">
+          <Form.Label as="legend">Animaux de compagnie</Form.Label>
           {/* Radio button for "Yes" */}
           <Form.Check
             type="radio"

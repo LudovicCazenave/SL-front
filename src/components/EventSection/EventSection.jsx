@@ -1,9 +1,7 @@
-import "./EventSection.scss"; // Import component-specific styles
+import "./EventSection.scss"; 
 
-// Import helper functions to format the event date and time
 import { formatDate, formatHour } from "../../utils/format.js";
 
-// Import React Bootstrap components for layout and imagery
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 

@@ -1,4 +1,4 @@
-import "./EditProfilPresentation.scss"; // Import the component-specific SCSS styling
+import "./EditProfilPresentation.scss"; 
 
 import { useState } from "react";
 

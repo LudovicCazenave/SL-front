@@ -10,6 +10,11 @@ import { AuthContext } from "../../contexts/AuthContext.jsx";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import InputGroup from "react-bootstrap/InputGroup";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+
 
 function SignIn() {
   // Local state to hold form field values.
@@ -17,6 +22,8 @@ function SignIn() {
     email: "",
     password: ""
   });
+
+  const [showPassword, setShowPassword] = useState(false);
 
   // Navigate allows programmatic route changes.
   const navigate = useNavigate();
@@ -67,20 +74,30 @@ function SignIn() {
             value={formData.email}
             onChange={handleChange}
           />
-        </Form.Group>
-        <Form.Group>
+         </Form.Group>
+        <Form.Group className="my-3">
           <Form.Label htmlFor="password">Mot de passe</Form.Label>
-          <Form.Control
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Votre mot de passe..."
-            required
-            autoComplete="new-password"
-            value={formData.password}
-            onChange={handleChange}
-          />
+          <InputGroup>
+            <Form.Control
+              type={showPassword ? "text" : "password"}
+              id="password"
+              name="password"
+              placeholder="Votre mot de passe..."
+              required
+              autoComplete="current-password"
+              value={formData.password}
+              onChange={handleChange}
+            />
+            <InputGroup.Text
+              onClick={() => setShowPassword(!showPassword)}
+              style={{ cursor: "pointer" }}
+              title={showPassword ? "Masquer le mot de passe" : "Afficher le mot de passe"}
+            >
+              <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+            </InputGroup.Text>
+          </InputGroup>
         </Form.Group>
+
         <Button size="lg" type="submit" className="mt-3 w-100">
           Se connecter
         </Button>

@@ -1,4 +1,4 @@
-import Container from "react-bootstrap/Container"; // Import Container for layout
+import Container from "react-bootstrap/Container"; 
 
 // EventTitle component renders the event's title and any additional children.
 function EventTitle({ event, children }) {

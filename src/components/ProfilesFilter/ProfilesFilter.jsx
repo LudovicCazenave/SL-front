@@ -96,8 +96,8 @@ function ProfilesFilter({
               </div>
               <Row className="px-4">
                 <Col md={6}>
-                  <Form.Group className="py-3">
-                    <Form.Label htmlFor="gender">Sexe</Form.Label>
+                  <Form.Group as="fieldset" className="py-3">
+                    <Form.Label as="legend">Sexe</Form.Label>
                     <div>
                       <Form.Check
                         inline
@@ -123,8 +123,8 @@ function ProfilesFilter({
                   </Form.Group>
                 </Col>
                 <Col md={6}>
-                  <Form.Group className="py-3">
-                    <Form.Label htmlFor="smoker">Fumeur</Form.Label>
+                  <Form.Group as="fieldset" className="py-3">
+                    <Form.Label as="legend">Fumeur</Form.Label>
                     <div>
                       <Form.Check
                         inline
@@ -150,8 +150,8 @@ function ProfilesFilter({
                   </Form.Group>
                 </Col>
                 <Col md={6}>
-                  <Form.Group className="py-3">
-                    <Form.Label htmlFor="pet">Animaux de compagnie</Form.Label>
+                  <Form.Group as="fieldset" className="py-3">
+                    <Form.Label as="legend">Animaux de compagnie</Form.Label>
                     <div>
                       <Form.Check
                         inline

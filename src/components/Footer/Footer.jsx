@@ -1,8 +1,8 @@
-import "./Footer.scss"; // Import custom styles for the Footer component
+import "./Footer.scss"; 
 
-import { Link } from "react-router"; // Import Link for navigation between routes
+import { Link } from "react-router";
 
-import Nav from "react-bootstrap/Nav"; // Import Nav component from React Bootstrap
+import Nav from "react-bootstrap/Nav"; 
 
 // Footer component displays a set of navigation links in the footer area
 function Footer() {

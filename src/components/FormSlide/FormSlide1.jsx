@@ -20,7 +20,7 @@ function FormSlide1({ nextSlide, updateFormData, formData }) {
     // Update the form data in the parent component
     updateFormData(newFormData);
 
-    // Move to the next slide (here, 1 indicates the next step)
+    // Move to the next slide
     nextSlide(1);
   };
 

@@ -1,4 +1,4 @@
-import Container from "react-bootstrap/Container"; // Import the Container component for layout
+import Container from "react-bootstrap/Container";
 
 // Component that displays the description of an event.
 // It receives an "event" object and optional children to render additional content.

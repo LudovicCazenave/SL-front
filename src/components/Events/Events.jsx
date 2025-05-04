@@ -1,10 +1,10 @@
-import "./Events.scss"; // Import custom styles
+import "./Events.scss"; 
 
-import EventCard from "../EventCard/EventCard.jsx"; // Import the component that displays individual events
+import EventCard from "../EventCard/EventCard.jsx"; 
 
-import Container from "react-bootstrap/Container"; // Import Container for layout
-import Row from "react-bootstrap/Row"; // Import Row from Bootstrap grid system
-import Col from "react-bootstrap/Col"; // Import Col from Bootstrap grid system
+import Container from "react-bootstrap/Container"; 
+import Row from "react-bootstrap/Row"; 
+import Col from "react-bootstrap/Col"; 
 
 // The Events component receives an array of event objects as a prop.
 function Events({ events }) {

@@ -4,7 +4,6 @@ import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 
 function ProfilSection({ children, profil }) {
-  console.log(profil);
   
   // Check if profile data is available; if not, return an error message
   if (!profil) {
