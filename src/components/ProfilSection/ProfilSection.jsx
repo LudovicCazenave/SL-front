@@ -4,6 +4,8 @@ import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 
 function ProfilSection({ children, profil }) {
+
+  const API_BASE_URL = "https://seniorlove.onrender.com";
   
   // Check if profile data is available; if not, return an error message
   if (!profil) {
@@ -11,9 +13,10 @@ function ProfilSection({ children, profil }) {
   }
 
   // If the profile picture URL is the default invalid value, reset it to an empty string
-  if (profil.picture === "https://seniorlove.onrender.com/null") {
-    profil.picture = "";
-  }
+  const isValidPictureUrl = profil.picture && 
+    profil.picture !== `${API_BASE_URL}/null` &&
+    profil.picture !== "http://localhost:3000/null" &&
+    !profil.picture.includes("null");
 
   // Choose the default image based on the profile's gender
   const defaultImage =
@@ -21,12 +24,18 @@ function ProfilSection({ children, profil }) {
       ? "/assets/img/diverse-img/profils/celine.png"
       : "/assets/img/diverse-img/profils/jacky.jpg";
 
+  const imageUrl = isValidPictureUrl 
+  ? profil.picture.startsWith("http") 
+    ? profil.picture 
+    : `${API_BASE_URL}${profil.picture}`
+  : defaultImage;
+
   return (
     <Container className="text-center bg-white my-3 py-4 rounded">
       <article>
         {/* Render the profile image; falls back to the default image if none provided */}
         <Image
-          src={profil.picture || defaultImage}
+          src={imageUrl}
           alt={profil.firstname}
           roundedCircle
           width="250"
