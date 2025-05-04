@@ -3,6 +3,9 @@ import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip"
+
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -65,6 +68,14 @@ function FormSlide10({ submitFormData, updateFormData, formData }) {
       <Form.Group className="my-3">
         <Form.Label htmlFor="password">Votre mot de passe</Form.Label>
         <InputGroup>
+        <OverlayTrigger
+          placement="right"
+          overlay={
+            <Tooltip id="tooltip-password">
+              Le mot de passe doit avoir **minimum 8 caractères, 1 majuscule et un caractère spécial**.
+            </Tooltip>
+          }
+        >
           <Form.Control
             type={showPassword ? "text" : "password"}
             id="password"
@@ -73,6 +84,8 @@ function FormSlide10({ submitFormData, updateFormData, formData }) {
             required
             autoComplete="new-password"
           />
+        </OverlayTrigger>
+
           <InputGroup.Text
             onClick={() => setShowPassword(!showPassword)}
             style={{ cursor: "pointer" }}

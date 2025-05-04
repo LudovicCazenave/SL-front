@@ -14,7 +14,7 @@ function Tagline(){
 				</Col>
 				<Col lg="3  mt-5  px-4">
 					<img src="/assets/img/icon/event-icon.svg" alt="icone calendrier" width="80" height="80"/>
-					<p  className="mt-4">Participez à des événements pour rencontrer en vrai</p>
+					<p  className="mt-4">Participez à des événements pour vous rencontrer en vrai</p>
 				</Col>
 				<Col lg="3 mt-5  px-4">
 					<img src="/assets/img/icon/easy-icon.svg" alt="icone doigts" width="80" height="80"/>
