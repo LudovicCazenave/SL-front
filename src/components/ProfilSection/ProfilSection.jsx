@@ -16,7 +16,7 @@ function ProfilSection({ children, profil }) {
   }
 
   // Access the API URL from .env
-  const apiUrl = process.env.API_URL;
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   // Choose the default image based on the profile's gender
   const defaultImage =
