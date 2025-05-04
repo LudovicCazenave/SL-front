@@ -27,7 +27,7 @@ function ProfilSection({ children, profil }) {
   // Construct the full profile image URL if it exists
   let imageUrl = profil.picture 
   if (imageUrl && imageUrl.startsWith("http://localhost:3000")) {
-    imageUrl = imageUrl.replace("http://localhost", "https://seniorlove.onrender.com");
+    imageUrl = imageUrl.replace("http://localhost:3000", "https://seniorlove.onrender.com");
   }
   return (
     <Container className="text-center bg-white my-3 py-4 rounded">
