@@ -34,7 +34,7 @@ function ProfilSection({ children, profil }) {
       <article>
         {/* Render the profile image; falls back to the default image if none provided */}
         <Image
-          src={imageUrl}
+          src={imageUrl || defaultImage}
           alt={profil.firstname}
           roundedCircle
           width="250"
