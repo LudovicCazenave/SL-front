@@ -11,7 +11,7 @@ function ProfilSection({ children, profil }) {
   }
 
   // If the profile picture URL is the default invalid value, reset it to an empty string
-  if (profil.picture === "http://localhost:3000/null") {
+  if (profil.picture === "https://seniorlove.onrender.com/null") {
     profil.picture = "";
   }
 
