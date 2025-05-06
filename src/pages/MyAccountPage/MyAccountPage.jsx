@@ -66,6 +66,7 @@ function MyAccountPage() {
         setAuthenticated(false);
         // Show a success message and then navigate to the home page.
         await showSuccessMessage(navigate);
+        navigate("/", { replace: true });
       }
     } else {
       // If deletion is cancelled, show an informational alert.
