@@ -19,7 +19,7 @@ function NavLinks({ setCurrentPage, onSelect }) {
   const handleLogout = async () => {
     const logout = await logOutMyAccount();
     if (logout) {
-      setAuthenticated(false);
+      setAuthenticated({ isAuthenticated: false, userId: null });
       setCurrentPage('');
     }
   };
@@ -31,7 +31,7 @@ function NavLinks({ setCurrentPage, onSelect }) {
 
   return (
     <Nav variant="underline" defaultActiveKey="/accueil" className="ms-auto" onSelect={onSelect}>
-      {authenticated ? (
+      {authenticated?.isAuthenticated ? (
         <>
           {/* Navigation link for "Profils" */}
           <Nav.Link

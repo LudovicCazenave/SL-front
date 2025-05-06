@@ -32,14 +32,14 @@ function Header() {
     >
       <Container fluid>
         {/* Brand navigation directed based on authentication status */}
-        <Navbar.Brand as={NavLink} to={authenticated ? "/tableau-de-bord" : "/accueil"}>
+        <Navbar.Brand as={NavLink} to={authenticated?.isAuthenticated ? "/tableau-de-bord" : "/accueil"}>
           <img
             alt=""
             src="/assets/img/logo/heart-2-removebg.png"
             width="60"
             height="60"
             className="d-inline-block align-top"
-            aria-label={authenticated ? "Retour au tableau de bord" : "Retour à l'accueil"}
+            aria-label={authenticated?.isAuthenticated ? "Retour au tableau de bord" : "Retour à l'accueil"}
           />
         </Navbar.Brand>
         {/* Navbar toggle button for mobile view */}
