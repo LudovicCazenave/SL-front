@@ -46,12 +46,12 @@ function MyAccountPage() {
 
   // Navigate to a specific edit view for updating account details.
   const handleEditView = (view) => {
-    navigate(`/mon-compte/modification/${view}`, { replace: true });
+    navigate(`/mon-compte/modification/${view}`);
   };
 
   // Navigate back to the main "My Account" page.
   const handleBackToMain = () => {
-    navigate("/mon-compte", { replace: true });
+    navigate("/mon-compte");
   };
 
   // Handle the deletion of the user's account.
