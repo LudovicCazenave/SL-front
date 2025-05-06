@@ -15,8 +15,8 @@ function ContactList({ contacts, onSelectContact }) {
         // Set the default image based on the contact's gender
         const defaultImage =
           contact.gender === "Femme"
-            ? "/assets/img/diverse-img/profils/Celine.png"
-            : "/assets/img/diverse-img/profils/Jacky.jpg";
+            ? "/assets/img/diverse-img/profils/celine.png"
+            : "/assets/img/diverse-img/profils/jacky.jpg";
 
         return (
           // OverlayTrigger to display a tooltip on hover
