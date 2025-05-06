@@ -69,7 +69,7 @@ function FormSlide10({ submitFormData, updateFormData, formData }) {
         <Form.Label htmlFor="password">Votre mot de passe</Form.Label>
         <InputGroup>
         <OverlayTrigger
-          placement="right"
+          placement="bottom"
           overlay={
             <Tooltip id="tooltip-password">
               Le mot de passe doit avoir **minimum 8 caractères, 1 majuscule et un caractère spécial**.
