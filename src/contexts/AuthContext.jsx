@@ -7,16 +7,19 @@ export const AuthContext = createContext();
 // AuthProvider component wraps parts of the app that need access to authentication data
 export function AuthProvider({ children }) {
   // Initialize authentication state with default values
-  const [authenticated, setAuthenticated] = useState({
-    isAuthenticated: false,
-    userId: null,
-  });
+  const [authenticated, setAuthenticated] = useState(null);
 
   // When the component mounts, verify the user's authentication status
   useEffect(() => {
     async function verifyToken() {
-      const isAuth = await authentificationUser(); // Call API to verify user token
-      setAuthenticated(isAuth); // Update auth state with the result from the API
+      try {
+        const isAuth = await authentificationUser(); // Call API to verify user token
+        setAuthenticated(isAuth || { isAuthenticated: false, userId: null }); // Update auth state with the result from the API
+      } catch (error) {
+        console.error(error)
+        setAuthenticated({ isAuthenticated: false, userId: null });
+      }
+      
     }
     verifyToken();
   }, []);

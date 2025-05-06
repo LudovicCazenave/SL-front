@@ -67,7 +67,7 @@ function App() {
             <Route
               path="/accueil"
               element={
-                authenticated ? (
+                authenticated?.isAuthenticated ? (
                   <Navigate to="/tableau-de-bord" />
                 ) : (
                   <HomePageLogOut updateFormData={updateFormData} />
