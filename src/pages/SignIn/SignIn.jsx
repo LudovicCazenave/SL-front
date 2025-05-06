@@ -53,7 +53,11 @@ function SignIn() {
 
     if (user) {
       // If sign-in is successful, update the global auth state.
-      setAuthenticated(true);
+      setAuthenticated({
+        isAuthenticated: true,
+          userId: user.id,
+          firstname: user.firstname,
+      });
       // Redirect to the dashboard.
       navigate("/tableau-de-bord", { replace: true });
     }
