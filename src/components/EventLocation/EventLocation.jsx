@@ -54,7 +54,7 @@ function EventLocation({ children, event }) {
     
       // Charger le script Google Maps
       const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${window.tarteaucitron.user.googlemapsKey}&callback=initMap`;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${window.tarteaucitron.user.googlemapsKey}&loading=async&callback=initMap&v=weekly`;
       script.async = true;
       script.defer = true;
     
