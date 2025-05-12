@@ -16,7 +16,7 @@ function MessagesPage() {
   // State to hold all messages
   const [messages, setMessages] = useState([]);
   // State to keep track of the currently selected contact for conversation
-  const [selectedContact, setSelectedContact] = useState(null);
+  const [selectedContact, setSelectedContact] = useState("");
   // Access location to potentially retrieve a receiver from navigation state
   const location = useLocation();
 
@@ -37,7 +37,7 @@ function MessagesPage() {
   // Build a Map of contacts by iterating over messages, excluding messages sent by the current user
   const contactsMap = new Map();
   messages.forEach((message) => {
-    const contact = message.sender_id === currentUser.userId ? message.receiver : message.sender;
+    const contact = message.receiver;
     if (contact.id !== currentUser.userId) {
       contactsMap.set(contact.id, contact);
     }
@@ -47,7 +47,7 @@ function MessagesPage() {
   const contacts = Array.from(contactsMap.values());
 
   // Obtain the receiver from navigation state if provided
-  const receiverFromNavigation = location.state?.receiver || null;
+  const receiverFromNavigation = location.state?.receiver || "";
 
   // Determine the active receiver: use the selectedContact if available, otherwise use the receiver from navigation
   const activeReceiver = selectedContact || receiverFromNavigation;
@@ -70,11 +70,6 @@ function MessagesPage() {
       )
     : [];
 
-  const handleMessageSent = (receiver) => {
-    setRefreshTrigger((prev) => prev + 1);
-    setSelectedContact(receiver); 
-  }
-
   return (
     <section>
       <Container fluid="lg">
@@ -83,7 +78,7 @@ function MessagesPage() {
           <Col xs={12} lg={2}>
             <ContactList
               contacts={contacts}
-              onSelectContact={setSelectedContact?.id}
+              onSelectContact={setSelectedContact}
             />
           </Col>
           {/* Message content column */}
@@ -92,7 +87,7 @@ function MessagesPage() {
               messages={filteredMessages}
               setMessages={setMessages}
               receiver={activeReceiver}
-              onMessageSent={handleMessageSent}
+              onMessageSent={() => setRefreshTrigger((prev) => prev + 1)}
             />
           </Col>
         </Row>

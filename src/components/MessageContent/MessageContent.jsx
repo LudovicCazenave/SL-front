@@ -3,7 +3,7 @@ import "./MessageContent.scss";
 import { useContext, useState } from "react";
 
 import { AuthContext } from "../../contexts/AuthContext.jsx";
-import { sendMessage } from "../../api/api.js";
+import { getAllMessages, sendMessage } from "../../api/api.js";
 import { successSendMessage } from "../../config/handling.error.js";
 
 import Container from "react-bootstrap/Container";
@@ -11,7 +11,7 @@ import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 import Form from "react-bootstrap/Form";
 
-function MessageContent({ messages, setMessages, receiver, onMessageSent }) {
+function MessageContent({ messages, setMessages, receiver }) {
   // State to hold the content of the new message being typed
   const [newMessage, setNewMessage] = useState("");
   // Retrieve the current authenticated user from the AuthContext
@@ -38,19 +38,15 @@ function MessageContent({ messages, setMessages, receiver, onMessageSent }) {
     // On successful message send, trigger the success notification and clear the input
     if (response) {
       successSendMessage();
-
-      const sentMessage = {
-        id: response.id || Date.now(), 
-        content: newMessage,
-        sender_id: currentUser.userId,
-        receiver_id: receiver.id,
-        created_at: new Date().toISOString(),
-        sender: currentUser,
-        receiver,
-      };
-      setMessages((prev) => [...prev, sentMessage]);
       setNewMessage("");
-      onMessageSent(receiver); // Notifier MessagesPage
+    }
+
+    // Retrieve the updated list of messages after sending
+    const updateMessages = await getAllMessages();
+
+    // If updated messages are received, update the state in the parent component
+    if (updateMessages) {
+      setMessages(updateMessages);
     }
   };
 
