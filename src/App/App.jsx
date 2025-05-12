@@ -26,7 +26,6 @@ import MessagesPage from "../pages/MessagesPage/MessagesPage.jsx";
 import LegalInfoPage from "../pages/LegalInfoPage/LegalInfoPage.jsx";
 import SiteMapPage from "../pages/SiteMapPage/SiteMapPage.jsx";
 import DataProtectionPage from "../pages/DataProtectionPage/DataProtectionPage.jsx";
-import CookieConsent from "../components/CookieConsent/CookieConsent.jsx";
 
 function App() {
   // State variable to hold form data (used for the sign-up wizard)
