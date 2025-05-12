@@ -46,23 +46,22 @@ function EventLocation({ children, event }) {
   useEffect(() => {
     if (!event) return;
 
-    // Expose initMap to the window for callback use by Google Maps
-    window.initMap = initMap;
-
-    // If the cookie consent manager (tarteaucitron) is available, configure its map callback
-    if (window.tarteaucitron) {
-      window.tarteaucitron.user.mapscallback = "initMap";
-
-      // If Google Maps are allowed, call initMap shortly after
-      if (window.tarteaucitron.state.googlemaps === true) {
-        setTimeout(initMap, 100);
-      }
+    if(window.tarteaucitron){
+      window.tarteaucitron.user.googlemapsCallback = initMap;
+      window.tarteaucitron.job = window.tarteaucitron.job || [];
+      window.tarteaucitron.job.push("googlemaps");
     }
 
+    if (window.tarteaucitron.state.googlemaps) {
+      initMap();
+    }else {
+      console.error("Tarteaucitron n'est pas chargé.");
+    }
+    
     // Cleanup: remove the map callback when the component unmounts
     return () => {
       if (window.tarteaucitron) {
-        window.tarteaucitron.user.mapscallback = null;
+        window.tarteaucitron.user.googlemapsCallbackk = null;
       }
       window.initMap = null;
     };

@@ -1,37 +1,49 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="SeniorLove est une plateforme de rencontre dédiée aux seniors souhaitant trouver l'amour et partager de beaux moments à deux. Inscrivez-vous dès maintenant !">
+    <meta
+      name="description"
+      content="SeniorLove est une plateforme de rencontre dédiée aux seniors souhaitant trouver l'amour et partager de beaux moments à deux. Inscrivez-vous dès maintenant !"
+    />
     <link rel="icon" type="image/x-icon" href="/assets/img/icon/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SeniorLove - La plateforme de rencontre pour les seniors</title>
-    
   </head>
   <body>
     <div id="root"></div>
     <script src="/tarteaucitron/tarteaucitron.min.js"></script>
     <script>
-      
-      window.addEventListener('load', () => {
-        tarteaucitron.init({
-          orientation: 'bottom', 
-          googleConsentMode: true, 
-          AcceptAllCta: true, 
-          DenyAllCta: true, 
-          highPrivacy: true, 
-          showIcon: true, 
-          iconPosition: 'BottomRight', 
-          
-        });
-
-        
-        tarteaucitron.user.googlemapsKey = "AIzaSyAJgVAY8IphlYThiG6tFg6PmyzF0a48qcQ";
-        tarteaucitron.job = tarteaucitron.job || [];
-        tarteaucitron.job.push('googlemaps');
+      tarteaucitron.init({
+        privacyUrl: "/privacy-policy", 
+        hashtag: "#tarteaucitron",
+        cookieName: "tarteaucitron",
+        orientation: "bottom", 
+        groupServices: true,
+        showDetailsOnClick: true,
+        serviceDefaultState: "wait",
+        showAlertSmall: false,
+        cookieslist: false,
+        closePopup: true,
+        showIcon: true,
+        iconPosition: "BottomRight",
+        adblocker: false,
+        DenyAllCta: true,
+        AcceptAllCta: true,
+        highPrivacy: true,
+        handleBrowserDNTRequest: false,
+        removeCredit: false,
+        moreInfoLink: true,
+        useExternalCss: false,
+        googleConsentMode: true,
+        mandatory: true,
+        mandatoryCta: false,
       });
-    </script>
 
+      tarteaucitron.user.googlemapsKey = "AIzaSyAJgVAY8IphlYThiG6tFg6PmyzF0a48qcQ";
+      tarteaucitron.job = tarteaucitron.job || [];
+      tarteaucitron.job.push("googlemaps");
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

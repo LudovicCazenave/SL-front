@@ -54,8 +54,6 @@ function App() {
 
         {/* Main content area */}
         <main>
-          {/* Component to handle cookie consent management */}
-          <CookieConsent />
 
           {/* Define application routes */}
           <Routes>
