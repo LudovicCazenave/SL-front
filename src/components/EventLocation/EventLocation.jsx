@@ -54,8 +54,6 @@ function EventLocation({ children, event }) {
 
     if (window.tarteaucitron.state.googlemaps) {
       initMap();
-    }else {
-      console.error("Tarteaucitron n'est pas chargé.");
     }
     
     // Cleanup: remove the map callback when the component unmounts
