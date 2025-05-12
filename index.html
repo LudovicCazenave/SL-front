@@ -10,6 +10,28 @@
   </head>
   <body>
     <div id="root"></div>
+    <script src="/tarteaucitron/tarteaucitron.min.js"></script>
+    <script>
+      
+      window.addEventListener('load', () => {
+        tarteaucitron.init({
+          orientation: 'bottom', 
+          googleConsentMode: true, 
+          AcceptAllCta: true, 
+          DenyAllCta: true, 
+          highPrivacy: true, 
+          showIcon: true, 
+          iconPosition: 'BottomRight', 
+          
+        });
+
+        
+        tarteaucitron.user.googlemapsKey = "AIzaSyAJgVAY8IphlYThiG6tFg6PmyzF0a48qcQ";
+        tarteaucitron.job = tarteaucitron.job || [];
+        tarteaucitron.job.push('googlemaps');
+      });
+    </script>
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
