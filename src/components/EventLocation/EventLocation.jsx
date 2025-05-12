@@ -1,11 +1,13 @@
 import "./EventLocation.scss"; 
 
-import { useCallback, useEffect, useRef } from "react"; 
+import { useCallback, useEffect, useRef, useState } from "react"; 
 import Container from "react-bootstrap/Container";
 
 function EventLocation({ children, event }) {
   // Reference for the map container div
   const mapRef = useRef(null);
+  const [isMapAllowed, setIsMapAllowed] = useState(false);
+
 
   // Initialize the Google Map using a callback
   const initMap = useCallback(() => {
@@ -46,16 +48,28 @@ function EventLocation({ children, event }) {
   useEffect(() => {
     if (!event) return;
 
-    if(window.tarteaucitron){
-      window.tarteaucitron.user.googlemapsCallback = initMap;
-      window.tarteaucitron.job = window.tarteaucitron.job || [];
-      window.tarteaucitron.job.push("googlemaps");
-    }
-
-    if (window.tarteaucitron.state.googlemaps) {
-      initMap();
-    }
+    const checkAndLoadMap = () =>{
+      if (window.tarteaucitron && window.tarteaucitron.state.googlemaps) {
+        setIsMapAllowed(true);
     
+      // Charger le script Google Maps
+      const script = document.createElement('script');
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${window.tarteaucitron.user.googlemapsKey}&callback=initMap`;
+      script.async = true;
+      script.defer = true;
+    
+    // Ajouter la fonction globale initMap
+      window.initMap = initMap;
+    
+      document.body.appendChild(script);
+    }
+  };
+  checkAndLoadMap();
+
+    if(window.tarteaucitron){
+      window.tarteaucitron.user.googlemapsCallback = checkAndLoadMap;
+      
+    }
     // Cleanup: remove the map callback when the component unmounts
     return () => {
       if (window.tarteaucitron) {
@@ -92,11 +106,16 @@ function EventLocation({ children, event }) {
           </p>
         </div>
         {/* Map container where the Google Map will be rendered */}
-        <div
+        {isMapAllowed ? (
+          <div
           ref={mapRef}
           className="googlemaps-canvas rounded size-format"
           data-cookieconsent="googlemaps"
         ></div>
+        ) : (
+          <p>Veuillez accepter les cookies pour afficher la carte.</p>
+
+        )}
         <div>
           {children}
         </div>
