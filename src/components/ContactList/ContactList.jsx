@@ -42,7 +42,7 @@ function ContactList({ contacts, onSelectContact }) {
               height="80"
               width="80"
               className="m-2"
-              onClick={() => onSelectContact && onSelectContact(contact)}
+              onClick={() => onSelectContact(contact)}
               style={{ cursor: "pointer" }}
             />
           </OverlayTrigger>
