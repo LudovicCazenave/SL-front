@@ -65,7 +65,7 @@ function EditProfilSection({ handleBackToMain }) {
       {/* Section title */}
       <h1 className="border-bottom mb-3 pb-3">Modification Identité</h1>
       {/* Form with multipart encoding to handle file uploads */}
-      <Form onSubmit={handleSubmit} encType="multipart/form-data">
+      <Form className="w-100" onSubmit={handleSubmit} encType="multipart/form-data">
         {/* Input group for profile picture */}
         <Form.Group className="my-5">
           <Form.Label htmlFor="edit-picture">
