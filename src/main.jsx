@@ -2,7 +2,6 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from "react-router";
 import { AuthProvider } from './contexts/AuthContext.jsx';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 import App from './App/App.jsx'
