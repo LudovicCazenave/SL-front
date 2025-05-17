@@ -62,7 +62,7 @@ function EditProfilInterest({ handleBackToMain }) {
 
   return (
     // Main container for the form with styling classes
-    <Container className="bg-white rounded text-center p-4 my-3 mx-auto size-format">
+    <Container className="bg-white rounded text-center py-4 my-3 mx-auto size-format">
       {/* Header title */}
       <h1 className="border-bottom mb-3 pb-3">
         Modification centres d'intérêts
