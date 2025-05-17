@@ -61,7 +61,7 @@ function EditProfilSection({ handleBackToMain }) {
   };
 
   return (
-    <Container className="bg-white rounded text-center py-4 my-3 mx-auto size-format">
+    <Container fluid className="bg-white rounded text-center py-4 my-3 mx-auto size-format">
       {/* Section title */}
       <h1 className="border-bottom mb-3 pb-3">Modification Identité</h1>
       {/* Form with multipart encoding to handle file uploads */}
