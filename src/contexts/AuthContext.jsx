@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
 import { authentificationUser } from "../api/api.js";
 
 // Create the authentication context to share the auth state across the app
