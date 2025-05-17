@@ -64,13 +64,13 @@ function EditProfilInfo({ handleBackToMain }) {
 
   return (
     // Container for the form with styling and formatting classes
-    <Container fluid className="bg-white rounded text-center py-4 my-3 mx-auto size-format">
+    <Container className="bg-white rounded text-center py-4 my-3 mx-auto size-format">
       <h1 className="border-bottom mb-3 pb-3">Modification Générale</h1>
       
       {/* Form for editing profile information */}
       <Form onSubmit={handleSubmit}>
         {/* Group for smoker selection */}
-        <Form.Group as="fieldset" className="my-5">
+        <Form.Group as="fieldset" className="mb-4">
           <Form.Label as="legend">Fumeur</Form.Label>
           {/* Radio button for "Yes" */}
           <Form.Check
@@ -95,7 +95,7 @@ function EditProfilInfo({ handleBackToMain }) {
         </Form.Group>
         
         {/* Group for pet ownership selection */}
-        <Form.Group as="fieldset" className="my-5">
+        <Form.Group as="fieldset" className="mb-4">
           <Form.Label as="legend">Animaux de compagnie</Form.Label>
           {/* Radio button for "Yes" */}
           <Form.Check
@@ -120,7 +120,7 @@ function EditProfilInfo({ handleBackToMain }) {
         </Form.Group>
         
         {/* Group for editing musical style */}
-        <Form.Group className="my-5">
+        <Form.Group className="mb-4">
           <Form.Label htmlFor="edit-music">Style de musique</Form.Label>
           {/* Text input for the new music style */}
           <Form.Control

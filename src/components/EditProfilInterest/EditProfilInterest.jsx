@@ -62,14 +62,14 @@ function EditProfilInterest({ handleBackToMain }) {
 
   return (
     // Main container for the form with styling classes
-    <Container fluid className="bg-white rounded text-center py-4 my-3 mx-auto size-format">
+    <Container className="bg-white rounded text-center py-4 my-3 mx-auto size-format">
       {/* Header title */}
       <h1 className="border-bottom mb-3 pb-3">
         Modification centres d'intérêts
       </h1>
       {/* Form for editing profile interests */}
       <Form onSubmit={handleSubmit}>
-        <Form.Group className="my-5">
+        <Form.Group className="mb-4">
           {/* Each Form.Check here represents one interest option */}
           <Form.Check
             id="nature"

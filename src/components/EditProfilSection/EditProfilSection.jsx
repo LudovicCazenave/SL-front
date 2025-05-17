@@ -61,13 +61,13 @@ function EditProfilSection({ handleBackToMain }) {
   };
 
   return (
-    <Container fluid className="bg-white rounded text-center py-4 px-auto my-3 mx-auto size-format">
+    <Container className="bg-white rounded text-center py-4 my-3 mx-auto size-format">
       {/* Section title */}
       <h1 className="border-bottom mb-3 pb-3">Modification Identité</h1>
       {/* Form with multipart encoding to handle file uploads */}
       <Form onSubmit={handleSubmit} encType="multipart/form-data">
         {/* Input group for profile picture */}
-        <Form.Group className="my-5">
+        <Form.Group className="mb-4">
           <Form.Label htmlFor="edit-picture">
             Télécharger une photo de profil
           </Form.Label>
@@ -80,7 +80,7 @@ function EditProfilSection({ handleBackToMain }) {
           />
         </Form.Group>
         {/* Input group for first name */}
-        <Form.Group className="my-5">
+        <Form.Group className="mb-4">
           <Form.Label htmlFor="edit-firstname">Prénom</Form.Label>
           <Form.Control
             type="text"
@@ -91,7 +91,7 @@ function EditProfilSection({ handleBackToMain }) {
           />
         </Form.Group>
         {/* Select dropdown for city */}
-        <Form.Group className="mt-3">
+        <Form.Group className="mb-4">
           <Form.Label htmlFor="city">Ville</Form.Label>
           <Form.Select
             id="city"

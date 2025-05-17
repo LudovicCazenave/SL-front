@@ -60,13 +60,13 @@ function EditProfilPresentation({ handleBackToMain }) {
 
   return (
     // Main container with styling classes for a white background, rounded corners, and padding.
-    <Container fluid className="bg-white rounded text-center py-4 my-3 mx-auto size-format">
+    <Container  className="bg-white rounded text-center py-4 my-3 mx-auto size-format">
       {/* Header title for the edit presentation section */}
       <h1 className="border-bottom mb-3 pb-3">Modification texte d'introduction</h1>
       
       {/* Form to handle the update of the introduction text */}
       <Form onSubmit={handleSubmit}>
-        <Form.Group className="my-5">
+        <Form.Group className="mb-4">
           {/* Label for the textarea providing instructions to the user */}
           <Form.Label htmlFor="edit-presentation">
             Présentez-vous en quelques mots
