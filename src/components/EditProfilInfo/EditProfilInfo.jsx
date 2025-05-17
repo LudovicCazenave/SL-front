@@ -64,7 +64,7 @@ function EditProfilInfo({ handleBackToMain }) {
 
   return (
     // Container for the form with styling and formatting classes
-    <Container className="bg-white rounded text-center p-4 my-3 size-format">
+    <Container className="bg-white rounded text-center p-4 my-3 mx-auto size-format">
       <h1 className="border-bottom mb-3 pb-3">Modification Générale</h1>
       
       {/* Form for editing profile information */}

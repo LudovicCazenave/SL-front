@@ -60,7 +60,7 @@ function EditProfilPresentation({ handleBackToMain }) {
 
   return (
     // Main container with styling classes for a white background, rounded corners, and padding.
-    <Container className="bg-white rounded text-center p-4 my-3 size-format">
+    <Container className="bg-white rounded text-center p-4 my-3 mx-auto size-format">
       {/* Header title for the edit presentation section */}
       <h1 className="border-bottom mb-3 pb-3">Modification texte d'introduction</h1>
       
