@@ -9,7 +9,7 @@ function ProfilInfo({ children, profil }) {
   }
 
   return (
-    <Container className="bg-warning text-white my-3 py-4 rounded flex-grow-1 size-format">
+    <Container className="bg-warning text-white my-4 py-3 rounded flex-grow-1 size-format">
       <article>
         {/* Section title for general information */}
         <h2 className="mb-5">Informations générales</h2>
