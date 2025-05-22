@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { authentificationUser } from "../api/api.js";
+import Spinner from 'react-bootstrap/Spinner';
 
 // Create the authentication context to share the auth state across the app
 export const AuthContext = createContext();
@@ -26,7 +27,12 @@ export function AuthProvider({ children }) {
 
   // If the authentication state is null, show a loading indicator
   if (authenticated === null) {
-    return <div style={{ textAlign: "center", padding: "2rem" }}>Loading...</div>;
+    return (
+      <Spinner animation='border' role="status">
+        <span className="visually-hiden">Chargement</span>
+        <p>Chargement...</p>
+      </Spinner>
+    );
   }
 
   // Provide the authentication state and its updater to the rest of the app
