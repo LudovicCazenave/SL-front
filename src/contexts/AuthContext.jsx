@@ -31,7 +31,7 @@ export function AuthProvider({ children }) {
     return (
       <Container className="text-center">
         <Spinner animation='border' role="status">
-          <span className="visually-hiden">Chargement</span>
+          <span className="visually-hidden">Chargement</span>
         </Spinner>
         <p>Chargement...</p>
       </Container> 
