@@ -13,12 +13,15 @@ function EventCard({
     slug: "evenement-paris",
     label: { name: "label" },
   },
+  isClickable = true,
 }) {
   const navigate = useNavigate();
 
   // Handle click event to navigate to the event detail page using the event.slug
   const handleClick = () => {
-    navigate(`/evenements/${event.slug}`);
+    if(isClickable){
+      navigate(`/evenements/${event.slug}`);
+    }
   };
 
   return (
@@ -26,7 +29,7 @@ function EventCard({
     <Container fluid="lg" className="p-4 text-center">
       {/* Clickable card with an aria-label for accessibility */}
       <Card
-        className="clickable-card"
+        className={isClickable ? "clickable-card" : ""}
         aria-label={`Voir la fiche de l'événement ${event.description}`}
         onClick={handleClick}
       >

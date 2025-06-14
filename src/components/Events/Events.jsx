@@ -22,7 +22,7 @@ function Events({ events }) {
             // If events exist, map each event into a column with an EventCard component.
             events.map((event) => (
               <Col key={event.id} xs={12} lg={6}>
-                <EventCard event={event} />
+                <EventCard event={event} isClickable={false}/>
               </Col>
             ))
           ) : (
